@@ -9,8 +9,8 @@ Pod::Spec.new do |s|
                        DESC
   s.homepage         = "https://github.com/nvh/NVHTarGzip"
   s.license          = 'MIT'
-  s.author           = { "Niels van Hoorn" => "niels@zekerwaar.nl" }
   # s.source           = { :git => "https://github.com/nvh/NVHTarGzip.git", :tag => s.version.to_s }
+  s.author           = { "Niels van Hoorn" => "nvh@nvh.io" }
   s.social_media_url = 'https://twitter.com/nvh'
 
   s.platform     = :ios, '7.0'

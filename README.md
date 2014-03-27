@@ -77,7 +77,7 @@ pod "NVHTarGzip"
 
 ## Author
 
-Niels van Hoorn, niels@zekerwaar.nl
+Niels van Hoorn, nvh@nvh.io
 
 ## License
 
