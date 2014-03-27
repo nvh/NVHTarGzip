@@ -1,0 +1,496 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		013CF86907984F5C8E4DB159 /* NVHGzipFile.h in Headers */ = {isa = PBXBuildFile; fileRef = 06BA273D4ACF4D4CBDA4D52A /* NVHGzipFile.h */; };
+		233AB06B7CF641DDAA23C35F /* Pods-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 3571A95EA98B4A078AFB633C /* Pods-dummy.m */; };
+		42F18B8363214A7681C22059 /* libPods-NVHTarGzip.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E71A18E43C64E4593F896B7 /* libPods-NVHTarGzip.a */; };
+		4A6E6B6EAF9244C787D02D44 /* NVHTarGzip.m in Sources */ = {isa = PBXBuildFile; fileRef = E019F8C5E66547BE83556006 /* NVHTarGzip.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		5AF2049658894E23B1D8E022 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 527CC6FE0ADD48A1984327A1 /* Foundation.framework */; };
+		670A6F6623564AFA92126637 /* NVHTarFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D19B3EF10974077B76F8EE0 /* NVHTarFile.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		7A2670871C444C3BBEC2E737 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 527CC6FE0ADD48A1984327A1 /* Foundation.framework */; };
+		7EF9858B5FC04ABDA6A1C126 /* NVHFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B031620A9264AC9A9A2216A /* NVHFile.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		8CA56CE3422E419DA467A675 /* NVHTarFile.h in Headers */ = {isa = PBXBuildFile; fileRef = 46FF98AF379240B19934DFE0 /* NVHTarFile.h */; };
+		9142F6313B0E4B68B08B9920 /* NVHFile.h in Headers */ = {isa = PBXBuildFile; fileRef = E4C887027B944AA39863337C /* NVHFile.h */; };
+		96FE09CEE09943E4867EADB1 /* NVHTarGzip.h in Headers */ = {isa = PBXBuildFile; fileRef = 6619AEC637AC454EAC540CCF /* NVHTarGzip.h */; };
+		9EE80C500C634D43BFD93CEC /* NVHGzipFile.m in Sources */ = {isa = PBXBuildFile; fileRef = A8B4AD179A0F485EA0B50BC2 /* NVHGzipFile.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		DB55588975CC4490BA1485CC /* Pods-NVHTarGzip-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BAEEEF7E5A14858981692D1 /* Pods-NVHTarGzip-dummy.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		90056AFE329F46F4A57251FE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 42A69B7FD0564B2094BDC7B4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BF926D3996E146F5A4C324A6;
+			remoteInfo = "Pods-NVHTarGzip";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		00C15F21AB0A4C09A48FF743 /* Pods-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-acknowledgements.plist"; sourceTree = "<group>"; };
+		06BA273D4ACF4D4CBDA4D52A /* NVHGzipFile.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NVHGzipFile.h; path = Classes/NVHGzipFile.h; sourceTree = "<group>"; };
+		0EE78D5492A446919FA549FF /* Pods-NVHTarGzip.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-NVHTarGzip.xcconfig"; sourceTree = "<group>"; };
+		16FC5C5174C54039B7534435 /* Pods-NVHTarGzip-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-NVHTarGzip-prefix.pch"; sourceTree = "<group>"; };
+		199D4E28CD894D5CBD95A17F /* Pods-environment.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-environment.h"; sourceTree = "<group>"; };
+		1E71A18E43C64E4593F896B7 /* libPods-NVHTarGzip.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-NVHTarGzip.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3571A95EA98B4A078AFB633C /* Pods-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-dummy.m"; sourceTree = "<group>"; };
+		3B031620A9264AC9A9A2216A /* NVHFile.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NVHFile.m; path = Classes/NVHFile.m; sourceTree = "<group>"; };
+		46FF98AF379240B19934DFE0 /* NVHTarFile.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NVHTarFile.h; path = Classes/NVHTarFile.h; sourceTree = "<group>"; };
+		527CC6FE0ADD48A1984327A1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		572AD23B90364D8787478B1F /* Pods-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-resources.sh"; sourceTree = "<group>"; };
+		5D19B3EF10974077B76F8EE0 /* NVHTarFile.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NVHTarFile.m; path = Classes/NVHTarFile.m; sourceTree = "<group>"; };
+		6619AEC637AC454EAC540CCF /* NVHTarGzip.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NVHTarGzip.h; path = Classes/NVHTarGzip.h; sourceTree = "<group>"; };
+		7BAEEEF7E5A14858981692D1 /* Pods-NVHTarGzip-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-NVHTarGzip-dummy.m"; sourceTree = "<group>"; };
+		A8B4AD179A0F485EA0B50BC2 /* NVHGzipFile.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NVHGzipFile.m; path = Classes/NVHGzipFile.m; sourceTree = "<group>"; };
+		B2E505F56AFD4E66AD44AAE1 /* Pods-NVHTarGzip-Private.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-NVHTarGzip-Private.xcconfig"; sourceTree = "<group>"; };
+		B9A729F0678B442E866697AB /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		BF3C4F1185AF47AC92CFE43F /* Podfile */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		E019F8C5E66547BE83556006 /* NVHTarGzip.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NVHTarGzip.m; path = Classes/NVHTarGzip.m; sourceTree = "<group>"; };
+		E4C887027B944AA39863337C /* NVHFile.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = NVHFile.h; path = Classes/NVHFile.h; sourceTree = "<group>"; };
+		E9233FDBA68445B986B95292 /* Pods-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-acknowledgements.markdown"; sourceTree = "<group>"; };
+		FCFEF552A71A4F01927E541E /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Pods.xcconfig; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2E6992F672D34FD180D701F9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5AF2049658894E23B1D8E022 /* Foundation.framework in Frameworks */,
+				42F18B8363214A7681C22059 /* libPods-NVHTarGzip.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2FE3AEEE7C3C43BB9C2ABBCD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7A2670871C444C3BBEC2E737 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		069120C36F4647B08FBDD094 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				0EE78D5492A446919FA549FF /* Pods-NVHTarGzip.xcconfig */,
+				B2E505F56AFD4E66AD44AAE1 /* Pods-NVHTarGzip-Private.xcconfig */,
+				7BAEEEF7E5A14858981692D1 /* Pods-NVHTarGzip-dummy.m */,
+				16FC5C5174C54039B7534435 /* Pods-NVHTarGzip-prefix.pch */,
+			);
+			name = "Support Files";
+			sourceTree = SOURCE_ROOT;
+		};
+		1B2DF95384E4439288760A76 = {
+			isa = PBXGroup;
+			children = (
+				BF3C4F1185AF47AC92CFE43F /* Podfile */,
+				5AEFAF20B4E34A96BA942542 /* Development Pods */,
+				5B4A8CC5A66F40D7B005F231 /* Frameworks */,
+				573A32F05D064DD28FBF2835 /* Products */,
+				B0E90B7DEFAD40AA875DF218 /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		573A32F05D064DD28FBF2835 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B9A729F0678B442E866697AB /* libPods.a */,
+				1E71A18E43C64E4593F896B7 /* libPods-NVHTarGzip.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		5AEFAF20B4E34A96BA942542 /* Development Pods */ = {
+			isa = PBXGroup;
+			children = (
+				71B3854169D24399A1EDB3E0 /* NVHTarGzip */,
+			);
+			name = "Development Pods";
+			sourceTree = "<group>";
+		};
+		5B4A8CC5A66F40D7B005F231 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6124EF0D29D747FE87BD17A6 /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		6124EF0D29D747FE87BD17A6 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				527CC6FE0ADD48A1984327A1 /* Foundation.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		71B3854169D24399A1EDB3E0 /* NVHTarGzip */ = {
+			isa = PBXGroup;
+			children = (
+				E4C887027B944AA39863337C /* NVHFile.h */,
+				3B031620A9264AC9A9A2216A /* NVHFile.m */,
+				06BA273D4ACF4D4CBDA4D52A /* NVHGzipFile.h */,
+				A8B4AD179A0F485EA0B50BC2 /* NVHGzipFile.m */,
+				46FF98AF379240B19934DFE0 /* NVHTarFile.h */,
+				5D19B3EF10974077B76F8EE0 /* NVHTarFile.m */,
+				6619AEC637AC454EAC540CCF /* NVHTarGzip.h */,
+				E019F8C5E66547BE83556006 /* NVHTarGzip.m */,
+				069120C36F4647B08FBDD094 /* Support Files */,
+			);
+			name = NVHTarGzip;
+			path = ../..;
+			sourceTree = "<group>";
+		};
+		B0E90B7DEFAD40AA875DF218 /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				FC50EAFABD2F4D2FAAD0FABA /* Pods */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		FC50EAFABD2F4D2FAAD0FABA /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				FCFEF552A71A4F01927E541E /* Pods.xcconfig */,
+				E9233FDBA68445B986B95292 /* Pods-acknowledgements.markdown */,
+				00C15F21AB0A4C09A48FF743 /* Pods-acknowledgements.plist */,
+				3571A95EA98B4A078AFB633C /* Pods-dummy.m */,
+				199D4E28CD894D5CBD95A17F /* Pods-environment.h */,
+				572AD23B90364D8787478B1F /* Pods-resources.sh */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		40D79EDE975743D181EB905B /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9142F6313B0E4B68B08B9920 /* NVHFile.h in Headers */,
+				013CF86907984F5C8E4DB159 /* NVHGzipFile.h in Headers */,
+				8CA56CE3422E419DA467A675 /* NVHTarFile.h in Headers */,
+				96FE09CEE09943E4867EADB1 /* NVHTarGzip.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		1F39E83EAAB74DE48ECA6352 /* Pods */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8B915A03E63C4D879A157909 /* Build configuration list for PBXNativeTarget "Pods" */;
+			buildPhases = (
+				55A58D21984D4A11A10D7992 /* Sources */,
+				2E6992F672D34FD180D701F9 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				44BFCBE28A5444E3893374C1 /* PBXTargetDependency */,
+			);
+			name = Pods;
+			productName = Pods;
+			productReference = B9A729F0678B442E866697AB /* libPods.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		BF926D3996E146F5A4C324A6 /* Pods-NVHTarGzip */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6F5255A54F5C4E6DA470E088 /* Build configuration list for PBXNativeTarget "Pods-NVHTarGzip" */;
+			buildPhases = (
+				93AA69B4F1604E80BF11137F /* Sources */,
+				2FE3AEEE7C3C43BB9C2ABBCD /* Frameworks */,
+				40D79EDE975743D181EB905B /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Pods-NVHTarGzip";
+			productName = "Pods-NVHTarGzip";
+			productReference = 1E71A18E43C64E4593F896B7 /* libPods-NVHTarGzip.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		42A69B7FD0564B2094BDC7B4 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0500;
+			};
+			buildConfigurationList = D62F12396EB94567BC5FDB27 /* Build configuration list for PBXProject "Pods" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 1B2DF95384E4439288760A76;
+			productRefGroup = 573A32F05D064DD28FBF2835 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1F39E83EAAB74DE48ECA6352 /* Pods */,
+				BF926D3996E146F5A4C324A6 /* Pods-NVHTarGzip */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		55A58D21984D4A11A10D7992 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				233AB06B7CF641DDAA23C35F /* Pods-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		93AA69B4F1604E80BF11137F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7EF9858B5FC04ABDA6A1C126 /* NVHFile.m in Sources */,
+				9EE80C500C634D43BFD93CEC /* NVHGzipFile.m in Sources */,
+				670A6F6623564AFA92126637 /* NVHTarFile.m in Sources */,
+				4A6E6B6EAF9244C787D02D44 /* NVHTarGzip.m in Sources */,
+				DB55588975CC4490BA1485CC /* Pods-NVHTarGzip-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		44BFCBE28A5444E3893374C1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BF926D3996E146F5A4C324A6 /* Pods-NVHTarGzip */;
+			targetProxy = 90056AFE329F46F4A57251FE /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		1A2152E1E7A341C6A0B988D7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B2E505F56AFD4E66AD44AAE1 /* Pods-NVHTarGzip-Private.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DSTROOT = /tmp/xcodeproj.dst;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Pods-NVHTarGzip-prefix.pch";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				INSTALL_PATH = "$(BUILT_PRODUCTS_DIR)";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				OTHER_CFLAGS = (
+					"-DNS_BLOCK_ASSERTIONS=1",
+					"$(inherited)",
+				);
+				OTHER_CPLUSPLUSFLAGS = (
+					"-DNS_BLOCK_ASSERTIONS=1",
+					"$(inherited)",
+				);
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		2DD92CE003F1469898B555F3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = FCFEF552A71A4F01927E541E /* Pods.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DSTROOT = /tmp/xcodeproj.dst;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				INSTALL_PATH = "$(BUILT_PRODUCTS_DIR)";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				OTHER_CFLAGS = (
+					"-DNS_BLOCK_ASSERTIONS=1",
+					"$(inherited)",
+				);
+				OTHER_CPLUSPLUSFLAGS = (
+					"-DNS_BLOCK_ASSERTIONS=1",
+					"$(inherited)",
+				);
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		5760D40B83B847AF952CE99E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B2E505F56AFD4E66AD44AAE1 /* Pods-NVHTarGzip-Private.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				DSTROOT = /tmp/xcodeproj.dst;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Pods-NVHTarGzip-prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				INSTALL_PATH = "$(BUILT_PRODUCTS_DIR)";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		B228B0ED162840EE8AAF0D56 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = NO;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				STRIP_INSTALLED_PRODUCT = NO;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		D24E52AB59314FCB938E88C6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = NO;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				ONLY_ACTIVE_ARCH = YES;
+				STRIP_INSTALLED_PRODUCT = NO;
+			};
+			name = Debug;
+		};
+		DDC2F8BEAE7A42089CFF97D1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = FCFEF552A71A4F01927E541E /* Pods.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				DSTROOT = /tmp/xcodeproj.dst;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				INSTALL_PATH = "$(BUILT_PRODUCTS_DIR)";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		6F5255A54F5C4E6DA470E088 /* Build configuration list for PBXNativeTarget "Pods-NVHTarGzip" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5760D40B83B847AF952CE99E /* Debug */,
+				1A2152E1E7A341C6A0B988D7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8B915A03E63C4D879A157909 /* Build configuration list for PBXNativeTarget "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DDC2F8BEAE7A42089CFF97D1 /* Debug */,
+				2DD92CE003F1469898B555F3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D62F12396EB94567BC5FDB27 /* Build configuration list for PBXProject "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D24E52AB59314FCB938E88C6 /* Debug */,
+				B228B0ED162840EE8AAF0D56 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 42A69B7FD0564B2094BDC7B4 /* Project object */;
+}

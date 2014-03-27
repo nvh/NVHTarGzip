@@ -1,0 +1,14 @@
+PODS:
+  - NVHTarGzip (0.1.0)
+
+DEPENDENCIES:
+  - NVHTarGzip (from `../NVHTarGzip.podspec`)
+
+EXTERNAL SOURCES:
+  NVHTarGzip:
+    :path: ../NVHTarGzip.podspec
+
+SPEC CHECKSUMS:
+  NVHTarGzip: aa9105e4b9a38fac7c5a881ef03a10dc84067187
+
+COCOAPODS: 0.29.0

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5053" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="mbN-Js-sdH">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="4Sx-VO-uPU">
+            <objects>
+                <viewController id="mbN-Js-sdH" customClass="NVHViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="uU0-fu-4pj"/>
+                        <viewControllerLayoutGuide type="bottom" id="8UK-cz-1rZ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="5XM-pO-XbK">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JY4-hx-r9k" userLabel="Progress label">
+                                <rect key="frame" x="20" y="254" width="280" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="OlO-cy-aUp">
+                                <rect key="frame" x="20" y="283" width="280" height="2"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </progressView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Icm-Fv-Iud">
+                                <rect key="frame" x="144" y="123" width="33" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Start">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="unTarGzipFile:" destination="mbN-Js-sdH" eventType="touchUpInside" id="z5e-x1-LIU"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Icm-Fv-Iud" firstAttribute="centerX" secondItem="JY4-hx-r9k" secondAttribute="centerX" id="52p-LG-QlF"/>
+                            <constraint firstItem="JY4-hx-r9k" firstAttribute="leading" secondItem="5XM-pO-XbK" secondAttribute="leading" constant="20" symbolic="YES" id="Ckx-1N-oT2"/>
+                            <constraint firstItem="OlO-cy-aUp" firstAttribute="top" secondItem="JY4-hx-r9k" secondAttribute="bottom" constant="8" symbolic="YES" id="EuO-mF-idv"/>
+                            <constraint firstItem="Icm-Fv-Iud" firstAttribute="top" secondItem="uU0-fu-4pj" secondAttribute="bottom" constant="103" id="FrF-a8-QUn"/>
+                            <constraint firstAttribute="trailing" secondItem="JY4-hx-r9k" secondAttribute="trailing" constant="20" symbolic="YES" id="VwI-IT-dbI"/>
+                            <constraint firstItem="OlO-cy-aUp" firstAttribute="centerY" secondItem="5XM-pO-XbK" secondAttribute="centerY" id="mSY-pX-2bp"/>
+                            <constraint firstItem="OlO-cy-aUp" firstAttribute="trailing" secondItem="JY4-hx-r9k" secondAttribute="trailing" id="qsa-3X-5Un"/>
+                            <constraint firstItem="OlO-cy-aUp" firstAttribute="leading" secondItem="JY4-hx-r9k" secondAttribute="leading" id="vaf-6U-uFl"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="progressLabel" destination="JY4-hx-r9k" id="E1B-h9-764"/>
+                        <outlet property="progressView" destination="OlO-cy-aUp" id="XX2-Vw-SS3"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3C2-xz-nbc" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="112" y="19"/>
+        </scene>
+    </scenes>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
+</document>

@@ -1,0 +1,84 @@
+# NVHTarGzip
+
+[![Version](http://cocoapod-badges.herokuapp.com/v/NVHTarGzip/badge.png)](http://cocoadocs.org/docsets/NVHTarGzip)
+[![Platform](http://cocoapod-badges.herokuapp.com/p/NVHTarGzip/badge.png)](http://cocoadocs.org/docsets/NVHTarGzip)
+
+This is ObjC wrapper around tar and gzip that directly manipulates files and isn't implemented as a category on NSData like [GZIP](https://github.com/nicklockwood/GZIP) and [Godzippa](https://github.com/mattt/Godzippa), so the full file doesn't have to be loaded into memory.
+
+The tar implementation is based on [Light-Untar-for-iOS](https://github.com/mhausherr/Light-Untar-for-iOS), but is extended to include progress reporting through NSProgress
+
+## Usage
+
+### Inflate Gzip file
+
+```objective-c
+[[NVHTarGzip shared] unGzipFileAtPath:sourcePath toPath:destinationPath completion:^(NSError* gzipError) {
+    if (gzipError != nil) {
+        NSLog(@"Error unzipping %@",gzipError);
+    }
+}];
+```
+
+### Untar file
+
+```objective-c
+[[NVHTarGzip shared] unTarFileAtPath:sourcePath toPath:destinationPath completion:^(NSError* tarError) {
+    if (tarError != nil) {
+        NSLog(@"Error untarring %@",tarError);
+    }
+}];
+```
+
+### Inflate Gzip and Untar
+
+```objective-c
+[[NVHTarGzip shared] unTarGzipFileAtPath:sourcePath toPath:destinationPath completion:^(NSError* error) {
+    if (error != nil) {
+        NSLog(@"Error extracting %@",error);
+    }
+}];
+```
+
+This will unzip the file to a cache-directory, and consequently extract the tar archive. After untarring, the cache-file is deleted. You can customize the cachePath by setting it on the singleton object before extracting:
+
+```objective-c
+[[NVHTarGzip shared] setCachePath:customCachePath];
+```
+
+### Progress 
+
+`NVHTarGzip` uses `NSProgress` to handle progress reporting. To keep track of progress create your own progress instance and use KVO to inspect the `fractionCompleted` property. See the [documentation of NSProgress](https://developer.apple.com/library/ios/documentation/Foundation/Reference/NSProgress_Class/Reference/Reference.html) and [this great article](http://oleb.net/blog/2014/03/nsprogress/) by [Ole Begemann](https://github.com/ole) for more information.
+
+```objective-c
+NSProgress* progress = [NSProgress progressWithTotalUnitCount:1];
+NSString* keyPath = NSStringFromSelector(@selector(fractionCompleted));
+[progress addObserver:self forKeyPath:keyPath options:NSKeyValueObservingOptionInitial context:NVHProgressFractionCompletedObserverContext];
+[progress becomeCurrentWithPendingUnitCount:1];
+[[NVHTarGzip shared] unTarGzipFileAtPath:self.demoSourceFilePath toPath:self.demoDestinationFilePath completion:^(NSError* error) {
+    [progress resignCurrent];
+    [progress removeObserver:self forKeyPath:keyPath];
+}];
+```
+
+Checkout a full usage example in the example project; clone the repo, and run `pod install` from the Example directory first.
+
+## Todo
+
+Compressing files is currently not supported. Pull requests are welcome!
+
+## Installation
+
+NVHTarGzip is available through [CocoaPods](http://cocoapods.org), to install
+it simply add the following line to your Podfile:
+
+```ruby
+pod "NVHTarGzip"
+```
+
+## Author
+
+Niels van Hoorn, niels@zekerwaar.nl
+
+## License
+
+NVHTarGzip is available under the MIT license. See the LICENSE file for more info.
