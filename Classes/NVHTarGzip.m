@@ -52,7 +52,17 @@
         cachePath = [cachePath stringByAppendingPathExtension:@"tar"];
     }
     NSProgress* progress = [NSProgress progressWithTotalUnitCount:2];
-    [progress becomeCurrentWithPendingUnitCount:1];
+	
+	if ([NSThread isMainThread])
+	{
+		[progress becomeCurrentWithPendingUnitCount:1];
+	}
+	else
+	{
+		dispatch_async(dispatch_get_main_queue(), ^{
+			[progress becomeCurrentWithPendingUnitCount:1];
+		});
+	}
     [self unGzipFileAtPath:sourcePath toPath:cachePath completion:^(NSError* gzipError) {
         [progress resignCurrent];
         if (gzipError != nil) {
