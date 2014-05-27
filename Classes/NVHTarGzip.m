@@ -81,11 +81,7 @@
 }
 
 - (void)unTarGzipFileAtPath:(NSString*)sourcePath toPath:(NSString*)destinationPath completion:(void(^)(NSError*))completion {
-    NSString* filename = [[sourcePath lastPathComponent] stringByDeletingPathExtension];
-    NSString* cachePath = [self.cachePath stringByAppendingPathComponent:filename];
-    if (![[cachePath pathExtension] isEqualToString:@"tar"]) {
-        cachePath = [cachePath stringByAppendingPathExtension:@"tar"];
-    }
+    NSString* cachePath = [self cacheFilePathForSource:sourcePath];
     NSProgress* progress = [NSProgress progressWithTotalUnitCount:2];
     [progress becomeCurrentWithPendingUnitCount:1];
     [self unGzipFileAtPath:sourcePath toPath:cachePath completion:^(NSError* gzipError) {
@@ -106,4 +102,19 @@
         }];
     }];
 }
+
+
+- (NSString*)cacheFilePathForSource:(NSString*)sourcePath {
+    CFUUIDRef theUUID = CFUUIDCreate(NULL);
+    CFStringRef UUID = CFUUIDCreateString(NULL, theUUID);
+    CFRelease(theUUID);
+    NSString* filename = [[sourcePath lastPathComponent] stringByDeletingPathExtension];
+    NSString* cacheFile = [filename stringByAppendingFormat:@"-%@",UUID];
+    NSString* cachePath = [self.cachePath stringByAppendingPathComponent:cacheFile];
+    if (![[cachePath pathExtension] isEqualToString:@"tar"]) {
+        cachePath = [cachePath stringByAppendingPathExtension:@"tar"];
+    }
+    return cachePath;
+}
+
 @end
