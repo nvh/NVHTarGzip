@@ -35,6 +35,41 @@
     return self;
 }
 
+- (BOOL)unGzipFileAtPath:(NSString *)sourcePath toPath:(NSString *)destinationPath error:(NSError**)error {
+    NVHGzipFile* gzipFile = [[NVHGzipFile alloc] initWithPath:sourcePath];
+    return [gzipFile inflateToPath:destinationPath error:error];
+}
+
+- (BOOL)unTarFileAtPath:(NSString *)sourcePath toPath:(NSString *)destinationPath error:(NSError**)error {
+    NVHTarFile* tarFile = [[NVHTarFile alloc] initWithPath:sourcePath];
+    return [tarFile createFilesAndDirectoriesAtPath:destinationPath error:error];
+}
+
+- (BOOL)unTarGzipFileAtPath:(NSString*)sourcePath toPath:(NSString*)destinationPath error:(NSError**)error {
+    NSString* cachePath = [self cacheFilePathForSource:sourcePath];
+    NSProgress* progress = [NSProgress progressWithTotalUnitCount:2];
+    [progress becomeCurrentWithPendingUnitCount:1];
+    [self unGzipFileAtPath:sourcePath toPath:cachePath error:error];
+    [progress resignCurrent];
+    if (*error != nil) {
+        return NO;
+    }
+    [progress becomeCurrentWithPendingUnitCount:1];
+    [self unTarFileAtPath:cachePath toPath:destinationPath error:error];
+    NSError* removeCacheError = nil;
+    [[NSFileManager defaultManager] removeItemAtPath:cachePath error:&removeCacheError];
+    if (*error != nil) {
+        return NO;
+    }
+    if (removeCacheError != nil) {
+        *error = removeCacheError;
+        return NO;
+    }
+    [progress resignCurrent];
+    return YES;
+}
+
+
 - (void)unGzipFileAtPath:(NSString *)sourcePath toPath:(NSString *)destinationPath completion:(void(^)(NSError*))completion {
     NVHGzipFile* gzipFile = [[NVHGzipFile alloc] initWithPath:sourcePath];
     [gzipFile inflateToPath:destinationPath completion:completion];
