@@ -10,5 +10,6 @@
 #import "NVHFile.h"
 
 @interface NVHGzipFile : NVHFile
+- (BOOL)inflateToPath:(NSString *)destinationPath error:(NSError**)error;
 - (void)inflateToPath:(NSString *)destinationPath completion:(void(^)(NSError*))completion;
 @end

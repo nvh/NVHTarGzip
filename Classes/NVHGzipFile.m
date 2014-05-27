@@ -20,10 +20,20 @@ static const int kNVHGzipDefaultWindowBitsWithGZipHeader = 16 + kNVHGzipDefaultW
 @end
 
 @implementation NVHGzipFile
-- (void)inflateToPath:(NSString *)destinationPath completion:(void(^)(NSError*))completion {
+- (NSProgress*)createProgressObject {
     NSProgress* progress = [NSProgress progressWithTotalUnitCount:self.maxTotalUnitCount];
     progress.cancellable = NO;
     progress.pausable = NO;
+    return progress;
+}
+
+- (BOOL)inflateToPath:(NSString *)destinationPath error:(NSError**)error {
+    NSProgress* progress = [self createProgressObject];
+    return [self inflateToPath:destinationPath withProgress:progress error:error];
+}
+
+- (void)inflateToPath:(NSString *)destinationPath completion:(void(^)(NSError*))completion {
+    NSProgress* progress = [self createProgressObject];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         NSError* error = nil;
         [self inflateFileFromPath:self.filePath toPath:destinationPath withProgress:progress error:&error];
