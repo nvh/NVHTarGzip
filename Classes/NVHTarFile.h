@@ -10,5 +10,6 @@
 #import "NVHFile.h"
 
 @interface NVHTarFile : NVHFile
+- (BOOL)createFilesAndDirectoriesAtPath:(NSString *)destinationPath error:(NSError **)error;
 - (void)createFilesAndDirectoriesAtPath:(NSString *)destinationPath completion:(void(^)(NSError*))completion;
 @end

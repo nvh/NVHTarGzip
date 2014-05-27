@@ -55,10 +55,20 @@
 
 @implementation NVHTarFile
 
-- (void)createFilesAndDirectoriesAtPath:(NSString *)destinationPath completion:(void (^)(NSError *))completion {
+- (NSProgress*)createProgressObject {
     NSProgress* progress = [NSProgress progressWithTotalUnitCount:self.maxTotalUnitCount];
     progress.cancellable = NO;
     progress.pausable = NO;
+    return progress;
+}
+
+- (BOOL)createFilesAndDirectoriesAtPath:(NSString *)destinationPath error:(NSError **)error {
+    NSProgress* progress = [self createProgressObject];
+    return [self createFilesAndDirectoriesAtPath:destinationPath withProgress:progress error:error];
+}
+
+- (void)createFilesAndDirectoriesAtPath:(NSString *)destinationPath completion:(void (^)(NSError *))completion {
+    NSProgress* progress = [self createProgressObject];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         NSError* error = nil;
         [self createFilesAndDirectoriesAtPath:destinationPath withProgress:progress error:&error];
@@ -66,7 +76,6 @@
             completion(error);
         });
     });
-    
 }
 
 - (BOOL)createFilesAndDirectoriesAtPath:(NSString *)path withProgress:(NSProgress*)progress error:(NSError **)error
