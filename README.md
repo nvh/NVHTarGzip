@@ -9,7 +9,9 @@ The tar implementation is based on [Light-Untar-for-iOS](https://github.com/mhau
 
 ## Usage
 
-### Inflate Gzip file
+### Asynchronous
+
+#### Inflate Gzip file
 
 ```objective-c
 [[NVHTarGzip shared] unGzipFileAtPath:sourcePath toPath:destinationPath completion:^(NSError* gzipError) {
@@ -19,7 +21,7 @@ The tar implementation is based on [Light-Untar-for-iOS](https://github.com/mhau
 }];
 ```
 
-### Untar file
+#### Untar file
 
 ```objective-c
 [[NVHTarGzip shared] unTarFileAtPath:sourcePath toPath:destinationPath completion:^(NSError* tarError) {
@@ -29,7 +31,7 @@ The tar implementation is based on [Light-Untar-for-iOS](https://github.com/mhau
 }];
 ```
 
-### Inflate Gzip and Untar
+#### Inflate Gzip and Untar
 
 ```objective-c
 [[NVHTarGzip shared] unTarGzipFileAtPath:sourcePath toPath:destinationPath completion:^(NSError* error) {
@@ -39,6 +41,38 @@ The tar implementation is based on [Light-Untar-for-iOS](https://github.com/mhau
 }];
 ```
 
+
+### Synchronous
+
+#### Inflate Gzip file
+
+```objective-c
+[[NVHTarGzip shared] unGzipFileAtPath:sourcePath toPath:destinationPath completion:^(NSError* gzipError) {
+    if (gzipError != nil) {
+        NSLog(@"Error unzipping %@",gzipError);
+    }
+}];
+```
+
+#### Untar file
+
+```objective-c
+[[NVHTarGzip shared] unTarFileAtPath:sourcePath toPath:destinationPath completion:^(NSError* tarError) {
+    if (tarError != nil) {
+        NSLog(@"Error untarring %@",tarError);
+    }
+}];
+```
+
+#### Inflate Gzip and Untar
+
+```objective-c
+[[NVHTarGzip shared] unTarGzipFileAtPath:sourcePath toPath:destinationPath completion:^(NSError* error) {
+    if (error != nil) {
+        NSLog(@"Error extracting %@",error);
+    }
+}];
+```
 This will unzip the file to a cache-directory, and consequently extract the tar archive. After untarring, the cache-file is deleted. You can customize the cachePath by setting it on the singleton object before extracting:
 
 ```objective-c
