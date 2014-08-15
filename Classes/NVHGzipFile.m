@@ -49,6 +49,7 @@ NSString * const NVHGzipFileZlibErrorDomain = @"io.nvh.targzip.zlib.error";
             break;
         case -2:
             localizedDescription = NSLocalizedString(@"Unexpected state from zlib", @"");
+            break;
         default:
             localizedDescription = NSLocalizedString(@"Unknown error",@"");
             break;
