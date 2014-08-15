@@ -49,6 +49,7 @@ NSString * const NVHGzipFileZlibErrorDomain = @"io.nvh.targzip.zlib.error";
             break;
         case -2:
             localizedDescription = NSLocalizedString(@"Unexpected state from zlib", @"");
+            break;
         default:
             localizedDescription = NSLocalizedString(@"Unknown error",@"");
             break;
@@ -84,14 +85,21 @@ NSString * const NVHGzipFileZlibErrorDomain = @"io.nvh.targzip.zlib.error";
         
 		else if (read == 0)
 			break;
-		else if (read == -1)
-		{
-			return -1;
-		}
 		else
-		{
-			return -2;
-		}
+        {
+            if (buffer) {
+                free(buffer);
+            }
+            if  (read == -1)
+            {
+                return -1;
+            }
+            else
+            {
+                return -2;
+            }
+        }
+
 	}
     progress.completedUnitCount = progress.totalUnitCount;
 	gzclose(source);
