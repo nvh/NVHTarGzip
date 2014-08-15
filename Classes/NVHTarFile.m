@@ -107,40 +107,43 @@
     while (location < size) {
         progress.completedUnitCount = [self completionUnitCountForBytes:location];
         unsigned long long blockCount = 1; // 1 block for the header
-        @autoreleasepool {
             switch ([NVHTarFile typeForObject:object atOffset:location]) {
                 case '0': // It's a File
                 {
-                    NSString *name = [NVHTarFile nameForObject:object atOffset:location];
+                    @autoreleasepool {
+                        NSString *name = [NVHTarFile nameForObject:object atOffset:location];
 #ifdef TAR_VERBOSE_LOG_MODE
-                    NSLog(@"UNTAR - file - %@", name);
+                        NSLog(@"UNTAR - file - %@", name);
 #endif
-                    NSString *filePath = [path stringByAppendingPathComponent:name]; // Create a full path from the name
-                    
-                    unsigned long long size = [NVHTarFile sizeForObject:object atOffset:location];
-                    
-                    if (size == 0) {
+                        NSString *filePath = [path stringByAppendingPathComponent:name]; // Create a full path from the name
+                        
+                        unsigned long long size = [NVHTarFile sizeForObject:object atOffset:location];
+                        
+                        if (size == 0) {
 #ifdef TAR_VERBOSE_LOG_MODE
-                        NSLog(@"UNTAR - empty_file - %@", filePath);
+                            NSLog(@"UNTAR - empty_file - %@", filePath);
 #endif
-                        [@"" writeToFile:filePath atomically:YES encoding:NSUTF8StringEncoding error:error];
-                        break;
+                            [@"" writeToFile:filePath atomically:YES encoding:NSUTF8StringEncoding error:error];
+                            break;
+                        }
+                        
+                        blockCount += (size - 1) / TAR_BLOCK_SIZE + 1; // size/TAR_BLOCK_SIZE rounded up
+                        
+                        [self writeFileDataForObject:object atLocation:(location + TAR_BLOCK_SIZE) withLength:size atPath:filePath];
                     }
-                    
-                    blockCount += (size - 1) / TAR_BLOCK_SIZE + 1; // size/TAR_BLOCK_SIZE rounded up
-                    
-                    [self writeFileDataForObject:object atLocation:(location + TAR_BLOCK_SIZE) withLength:size atPath:filePath];
                     break;
                 }
                     
                 case '5': // It's a directory
                 {
-                    NSString *name = [NVHTarFile nameForObject:object atOffset:location];
+                    @autoreleasepool {
+                        NSString *name = [NVHTarFile nameForObject:object atOffset:location];
 #ifdef TAR_VERBOSE_LOG_MODE
-                    NSLog(@"UNTAR - directory - %@", name);
+                        NSLog(@"UNTAR - directory - %@", name);
 #endif
-                    NSString *directoryPath = [path stringByAppendingPathComponent:name]; // Create a full path from the name
-                    [filemanager createDirectoryAtPath:directoryPath withIntermediateDirectories:YES attributes:nil error:nil]; //Write the directory on filesystem
+                        NSString *directoryPath = [path stringByAppendingPathComponent:name]; // Create a full path from the name
+                        [filemanager createDirectoryAtPath:directoryPath withIntermediateDirectories:YES attributes:nil error:nil]; //Write the directory on filesystem
+                    }
                     break;
                 }
                     
@@ -164,8 +167,10 @@
 #ifdef TAR_VERBOSE_LOG_MODE
                     NSLog(@"UNTAR - unsupported block");
 #endif
-                    unsigned long long size = [NVHTarFile sizeForObject:object atOffset:location];
-                    blockCount += ceil(size / TAR_BLOCK_SIZE);
+                    @autoreleasepool {
+                        unsigned long long size = [NVHTarFile sizeForObject:object atOffset:location];
+                        blockCount += ceil(size / TAR_BLOCK_SIZE);
+                    }
                     break;
                 }
                     
@@ -181,7 +186,6 @@
             }
             
             location += blockCount * TAR_BLOCK_SIZE;
-        }
     }
     progress.completedUnitCount = progress.totalUnitCount;
     return YES;
