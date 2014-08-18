@@ -171,8 +171,18 @@
 #ifdef TAR_VERBOSE_LOG_MODE
                     NSLog(@"UNTAR - directory - %@", name);
 #endif
-                    NSString *directoryPath = [path stringByAppendingPathComponent:name]; // Create a full path from the name
-                    [filemanager createDirectoryAtPath:directoryPath withIntermediateDirectories:YES attributes:nil error:nil]; //Write the directory on filesystem
+                    // Create a full path from the name
+                    NSString *directoryPath = [path stringByAppendingPathComponent:name];
+                    NSError *createError;
+                    BOOL created = [filemanager createDirectoryAtPath:directoryPath
+                                          withIntermediateDirectories:YES
+                                                           attributes:nil
+                                                                error:&createError]; //Write the directory on filesystem
+                    if (!created) {
+#ifdef TAR_VERBOSE_LOG_MODE
+                        NSLog(@"UNTAR - error during creating a directrory - %@", createError);
+#endif
+                    }
                 }
                 break;
             }
