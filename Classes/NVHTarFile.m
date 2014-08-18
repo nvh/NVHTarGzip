@@ -210,7 +210,9 @@
                 NSDictionary *userInfo = [NSDictionary dictionaryWithObject:@"Invalid block type found"
                                                                      forKey:NSLocalizedDescriptionKey];
                 
-                if (error != NULL) *error = [NSError errorWithDomain:TAR_ERROR_DOMAIN code:TAR_ERROR_CODE_BAD_BLOCK userInfo:userInfo];
+                if (error != NULL) *error = [NSError errorWithDomain:TAR_ERROR_DOMAIN
+                                                                code:TAR_ERROR_CODE_BAD_BLOCK
+                                                            userInfo:userInfo];
                 
                 return NO;
             }
