@@ -105,11 +105,9 @@
 
 
 - (NSString*)cacheFilePathForSource:(NSString*)sourcePath {
-    CFUUIDRef theUUID = CFUUIDCreate(NULL);
-    CFStringRef UUID = CFUUIDCreateString(NULL, theUUID);
-    CFRelease(theUUID);
+    NSString *UUIDString = [[NSUUID UUID] UUIDString];
     NSString* filename = [[sourcePath lastPathComponent] stringByDeletingPathExtension];
-    NSString* cacheFile = [filename stringByAppendingFormat:@"-%@",UUID];
+    NSString* cacheFile = [filename stringByAppendingFormat:@"-%@",UUIDString];
     NSString* cachePath = [self.cachePath stringByAppendingPathComponent:cacheFile];
     if (![[cachePath pathExtension] isEqualToString:@"tar"]) {
         cachePath = [cachePath stringByAppendingPathExtension:@"tar"];
