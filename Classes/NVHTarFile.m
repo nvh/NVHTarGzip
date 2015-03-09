@@ -80,21 +80,19 @@
 
 - (BOOL)createFilesAndDirectoriesAtPath:(NSString *)path withProgress:(NSProgress*)progress error:(NSError **)error
 {
+    BOOL result = NO;
     NSFileManager *filemanager = [NSFileManager defaultManager];
-    
-    if ([filemanager fileExistsAtPath:self.filePath]) {
+    if (self.filePath && [filemanager fileExistsAtPath:self.filePath]) {
         NSFileHandle *fileHandle = [NSFileHandle fileHandleForReadingAtPath:self.filePath];
-        BOOL result = [self createFilesAndDirectoriesAtPath:path withTarObject:fileHandle size:self.fileSize progress:progress error:error];
+        result = [self createFilesAndDirectoriesAtPath:path withTarObject:fileHandle size:self.fileSize progress:progress error:error];
         [fileHandle closeFile];
-        return result;
+    } else {
+        NSDictionary *userInfo = @{NSLocalizedDescriptionKey: (self.filePath ? @"Source file not found" : @"Source file path is nil") };
+        if (error != NULL) {
+            *error = [NSError errorWithDomain:TAR_ERROR_DOMAIN code:TAR_ERROR_CODE_SOURCE_NOT_FOUND userInfo:userInfo];
+        }
     }
-    
-    NSDictionary *userInfo = [NSDictionary dictionaryWithObject:@"Source file not found"
-                                                         forKey:NSLocalizedDescriptionKey];
-    
-    if (error != NULL) *error = [NSError errorWithDomain:TAR_ERROR_DOMAIN code:TAR_ERROR_CODE_SOURCE_NOT_FOUND userInfo:userInfo];
-    
-    return NO;
+    return result;
 }
 
 - (BOOL)createFilesAndDirectoriesAtPath:(NSString *)path withTarObject:(id)object size:(unsigned long long)size progress:(NSProgress*)progress error:(NSError **)error
