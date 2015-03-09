@@ -11,10 +11,15 @@
 
 static void *NVHProgressFractionCompletedObserverContext = &NVHProgressFractionCompletedObserverContext;
 
+
 @interface NVHViewController ()
+
 @property (weak, nonatomic) IBOutlet UIButton *unTarGzipButton;
 @property (weak, nonatomic) IBOutlet UIButton *unTarButton;
+@property (weak, nonatomic) IBOutlet UIButton *tarButton;
+
 @end
+
 
 @implementation NVHViewController
 
@@ -29,7 +34,6 @@ static void *NVHProgressFractionCompletedObserverContext = &NVHProgressFractionC
     [progress becomeCurrentWithPendingUnitCount:1];
     
     [[NVHTarGzip shared] unTarGzipFileAtPath:self.demoSourceTarGzFilePath toPath:self.demoDestinationFolderPath completion:^(NSError* error) {
-    
         self.unTarButton.enabled = YES;
         self.unTarGzipButton.enabled = YES;
         
@@ -73,6 +77,30 @@ static void *NVHProgressFractionCompletedObserverContext = &NVHProgressFractionC
     }];
 }
 
+- (IBAction)tarFile:(UIButton*)sender {
+    sender.enabled = NO;
+    
+    self.progressLabel.text = @"Packing...";
+    
+    //    NSProgress* progress = [NSProgress progressWithTotalUnitCount:1];
+    //    NSString* keyPath = NSStringFromSelector(@selector(fractionCompleted));
+    //    [progress addObserver:self forKeyPath:keyPath options:NSKeyValueObservingOptionInitial context:NVHProgressFractionCompletedObserverContext];
+    //    [progress becomeCurrentWithPendingUnitCount:1];
+    
+    [[NVHTarGzip shared] tarFileAtPath:self.demoDestinationFolderPath toPath:self.demoDestinationTarPath completion:^(NSError* error) {
+        //        [progress resignCurrent];
+        //        [progress removeObserver:self forKeyPath:keyPath];
+        
+        if (error != nil) {
+            self.progressLabel.text = error.localizedDescription;
+        } else {
+            self.progressLabel.text = @"Done!";
+        }
+        
+        sender.enabled = YES;
+    }];
+}
+
 - (NSString *)demoSourceTarFilePath {
     return [[NSBundle mainBundle] pathForResource:@"misc.forsale" ofType:@"tar"];
 }
@@ -81,10 +109,18 @@ static void *NVHProgressFractionCompletedObserverContext = &NVHProgressFractionC
     return [[NSBundle mainBundle] pathForResource:@"misc.forsale.tar" ofType:@"gz"];
 }
 
+- (NSString*)demoDestinationTarPath {
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString* documentPath = paths[0];
+    NSString* destinationPath = [documentPath stringByAppendingPathComponent:@"misc-forsale.tar"];
+    return destinationPath;
+}
+
 - (NSString *)demoDestinationFolderPath {
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentPath = paths[0];
-    return documentPath;
+    NSString* destinationPath = [documentPath stringByAppendingPathComponent:@"20news-19997"];
+    return destinationPath;
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {

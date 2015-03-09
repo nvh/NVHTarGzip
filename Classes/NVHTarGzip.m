@@ -10,12 +10,15 @@
 #import "NVHGzipFile.h"
 #import "NVHTarFile.h"
 
+
 @interface NVHTarGzip()
 
 @end
 
+
 @implementation NVHTarGzip
-+(NVHTarGzip*)shared {
+
++ (NVHTarGzip*)shared {
     static dispatch_once_t onceToken;
     static NVHTarGzip* tarGzip;
     dispatch_once(&onceToken, ^{
@@ -69,6 +72,10 @@
     return YES;
 }
 
+- (BOOL)tarFileAtPath:(NSString *)sourcePath toPath:(NSString *)destinationPath error:(NSError**)error {
+    NVHTarFile* tarFile = [[NVHTarFile alloc] initWithPath:destinationPath];
+    return [tarFile packFilesAndDirectoriesAtPath:destinationPath error:error];
+}
 
 - (void)unGzipFileAtPath:(NSString *)sourcePath toPath:(NSString *)destinationPath completion:(void(^)(NSError*))completion {
     NVHGzipFile* gzipFile = [[NVHGzipFile alloc] initWithPath:sourcePath];
@@ -103,6 +110,10 @@
     }];
 }
 
+- (void)tarFileAtPath:(NSString *)sourcePath toPath:(NSString *)destinationPath completion:(void(^)(NSError*))completion {
+    NVHTarFile* tarFile = [[NVHTarFile alloc] initWithPath:destinationPath];
+    [tarFile packFilesAndDirectoriesAtPath:sourcePath completion:completion];
+}
 
 - (NSString*)cacheFilePathForSource:(NSString*)sourcePath {
     NSString *UUIDString = [[NSUUID UUID] UUIDString];
