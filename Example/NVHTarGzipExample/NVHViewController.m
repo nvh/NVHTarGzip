@@ -22,7 +22,7 @@ static void *NVHProgressFractionCompletedObserverContext = &NVHProgressFractionC
     NSString* keyPath = NSStringFromSelector(@selector(fractionCompleted));
     [progress addObserver:self forKeyPath:keyPath options:NSKeyValueObservingOptionInitial context:NVHProgressFractionCompletedObserverContext];
     [progress becomeCurrentWithPendingUnitCount:1];
-    [[NVHTarGzip shared] unTarGzipFileAtPath:self.demoSourceFilePath toPath:self.demoDestinationFilePath completion:^(NSError* error) {
+    [[NVHTarGzip shared] unTarGzipFileAtPath:self.demoSourceTarGzFilePath toPath:self.demoDestinationFolderPath completion:^(NSError* error) {
         [progress resignCurrent];
         [progress removeObserver:self forKeyPath:keyPath];
         if (error != nil) {
@@ -31,15 +31,14 @@ static void *NVHProgressFractionCompletedObserverContext = &NVHProgressFractionC
     }];
 }
 
--(NSString*)demoSourceFilePath {
-    return [[NSBundle mainBundle] pathForResource:@"20news-19997.tar" ofType:@"gz"];
+-(NSString*)demoSourceTarGzFilePath {
+    return [[NSBundle mainBundle] pathForResource:@"misc.forsale.tar" ofType:@"gz"];
 }
 
--(NSString*)demoDestinationFilePath {
+-(NSString*)demoDestinationFolderPath {
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString* documentPath = paths[0];
-    NSString* destinationPath = [documentPath stringByAppendingPathComponent:@"20news-19997"];
-    return destinationPath;
+    return documentPath;
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
