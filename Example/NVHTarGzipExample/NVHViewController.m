@@ -16,7 +16,7 @@ static void *NVHProgressFractionCompletedObserverContext = &NVHProgressFractionC
 
 @implementation NVHViewController
 
--(IBAction)unTarGzipFile:(UIButton*)sender {
+- (IBAction)unTarGzipFile:(UIButton*)sender {
     sender.enabled = NO;
     NSProgress* progress = [NSProgress progressWithTotalUnitCount:1];
     NSString* keyPath = NSStringFromSelector(@selector(fractionCompleted));
@@ -28,22 +28,26 @@ static void *NVHProgressFractionCompletedObserverContext = &NVHProgressFractionC
         if (error != nil) {
             self.progressLabel.text = error.localizedDescription;
         }
+        else
+        {
+            self.progressLabel.text = @"Done!";
+        }
     }];
 }
 
--(NSString*)demoSourceTarGzFilePath {
+- (NSString *)demoSourceTarGzFilePath {
     return [[NSBundle mainBundle] pathForResource:@"misc.forsale.tar" ofType:@"gz"];
 }
 
--(NSString*)demoDestinationFolderPath {
+- (NSString *)demoDestinationFolderPath {
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString* documentPath = paths[0];
+    NSString *documentPath = paths[0];
     return documentPath;
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
     if (context == NVHProgressFractionCompletedObserverContext) {
-        NSProgress* progress = object;
+        NSProgress *progress = object;
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
             [self.progressView setProgress:progress.fractionCompleted animated:YES];
             self.progressLabel.text = progress.localizedDescription;
