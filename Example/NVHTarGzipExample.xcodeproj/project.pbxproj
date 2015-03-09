@@ -17,23 +17,8 @@
 		B363D95218E2E9B3002FF42C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B363D95018E2E9B3002FF42C /* Main.storyboard */; };
 		B363D95518E2E9B3002FF42C /* NVHViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B363D95418E2E9B3002FF42C /* NVHViewController.m */; };
 		B363D95718E2E9B3002FF42C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B363D95618E2E9B3002FF42C /* Images.xcassets */; };
-		B363D95E18E2E9B3002FF42C /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B363D95D18E2E9B3002FF42C /* XCTest.framework */; };
-		B363D95F18E2E9B3002FF42C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B363D93E18E2E9B3002FF42C /* Foundation.framework */; };
-		B363D96018E2E9B3002FF42C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B363D94218E2E9B3002FF42C /* UIKit.framework */; };
-		B363D96818E2E9B3002FF42C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B363D96618E2E9B3002FF42C /* InfoPlist.strings */; };
-		B363D96A18E2E9B3002FF42C /* NVHTarGzipExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B363D96918E2E9B3002FF42C /* NVHTarGzipExampleTests.m */; };
 		BCFB59281AADDCFB00230695 /* misc.forsale.tar.gz in Resources */ = {isa = PBXBuildFile; fileRef = BCFB59271AADDCFB00230695 /* misc.forsale.tar.gz */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		B363D96118E2E9B3002FF42C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = B363D93318E2E9B3002FF42C /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = B363D93A18E2E9B3002FF42C;
-			remoteInfo = NVHTarGzipExample;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		20E578C175794AD3A4ED8E1D /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -52,11 +37,7 @@
 		B363D95318E2E9B3002FF42C /* NVHViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NVHViewController.h; sourceTree = "<group>"; };
 		B363D95418E2E9B3002FF42C /* NVHViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NVHViewController.m; sourceTree = "<group>"; };
 		B363D95618E2E9B3002FF42C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		B363D95C18E2E9B3002FF42C /* NVHTarGzipExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NVHTarGzipExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B363D95D18E2E9B3002FF42C /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		B363D96518E2E9B3002FF42C /* NVHTarGzipExampleTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "NVHTarGzipExampleTests-Info.plist"; sourceTree = "<group>"; };
-		B363D96718E2E9B3002FF42C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		B363D96918E2E9B3002FF42C /* NVHTarGzipExampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NVHTarGzipExampleTests.m; sourceTree = "<group>"; };
 		BCFB59271AADDCFB00230695 /* misc.forsale.tar.gz */ = {isa = PBXFileReference; lastKnownFileType = archive.gzip; path = misc.forsale.tar.gz; sourceTree = "<group>"; };
 		E1ABF667B52F0CA5459A48CF /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -70,16 +51,6 @@
 				B363D94318E2E9B3002FF42C /* UIKit.framework in Frameworks */,
 				B363D93F18E2E9B3002FF42C /* Foundation.framework in Frameworks */,
 				1A2629556050477BA17C1E68 /* libPods.a in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B363D95918E2E9B3002FF42C /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				B363D95E18E2E9B3002FF42C /* XCTest.framework in Frameworks */,
-				B363D96018E2E9B3002FF42C /* UIKit.framework in Frameworks */,
-				B363D95F18E2E9B3002FF42C /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -99,7 +70,6 @@
 			isa = PBXGroup;
 			children = (
 				B363D94418E2E9B3002FF42C /* NVHTarGzipExample */,
-				B363D96318E2E9B3002FF42C /* NVHTarGzipExampleTests */,
 				B363D93D18E2E9B3002FF42C /* Frameworks */,
 				B363D93C18E2E9B3002FF42C /* Products */,
 				2142715E3759D323951A845E /* Pods */,
@@ -110,7 +80,6 @@
 			isa = PBXGroup;
 			children = (
 				B363D93B18E2E9B3002FF42C /* NVHTarGzipExample.app */,
-				B363D95C18E2E9B3002FF42C /* NVHTarGzipExampleTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -153,24 +122,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		B363D96318E2E9B3002FF42C /* NVHTarGzipExampleTests */ = {
-			isa = PBXGroup;
-			children = (
-				B363D96918E2E9B3002FF42C /* NVHTarGzipExampleTests.m */,
-				B363D96418E2E9B3002FF42C /* Supporting Files */,
-			);
-			path = NVHTarGzipExampleTests;
-			sourceTree = "<group>";
-		};
-		B363D96418E2E9B3002FF42C /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				B363D96518E2E9B3002FF42C /* NVHTarGzipExampleTests-Info.plist */,
-				B363D96618E2E9B3002FF42C /* InfoPlist.strings */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -193,24 +144,6 @@
 			productReference = B363D93B18E2E9B3002FF42C /* NVHTarGzipExample.app */;
 			productType = "com.apple.product-type.application";
 		};
-		B363D95B18E2E9B3002FF42C /* NVHTarGzipExampleTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = B363D97018E2E9B3002FF42C /* Build configuration list for PBXNativeTarget "NVHTarGzipExampleTests" */;
-			buildPhases = (
-				B363D95818E2E9B3002FF42C /* Sources */,
-				B363D95918E2E9B3002FF42C /* Frameworks */,
-				B363D95A18E2E9B3002FF42C /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				B363D96218E2E9B3002FF42C /* PBXTargetDependency */,
-			);
-			name = NVHTarGzipExampleTests;
-			productName = NVHTarGzipExampleTests;
-			productReference = B363D95C18E2E9B3002FF42C /* NVHTarGzipExampleTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -223,9 +156,6 @@
 				TargetAttributes = {
 					B363D93A18E2E9B3002FF42C = {
 						DevelopmentTeam = 729WVZ5N33;
-					};
-					B363D95B18E2E9B3002FF42C = {
-						TestTargetID = B363D93A18E2E9B3002FF42C;
 					};
 				};
 			};
@@ -243,7 +173,6 @@
 			projectRoot = "";
 			targets = (
 				B363D93A18E2E9B3002FF42C /* NVHTarGzipExample */,
-				B363D95B18E2E9B3002FF42C /* NVHTarGzipExampleTests */,
 			);
 		};
 /* End PBXProject section */
@@ -257,14 +186,6 @@
 				BCFB59281AADDCFB00230695 /* misc.forsale.tar.gz in Resources */,
 				B363D94918E2E9B3002FF42C /* InfoPlist.strings in Resources */,
 				B363D95218E2E9B3002FF42C /* Main.storyboard in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B363D95A18E2E9B3002FF42C /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				B363D96818E2E9B3002FF42C /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -314,23 +235,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B363D95818E2E9B3002FF42C /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				B363D96A18E2E9B3002FF42C /* NVHTarGzipExampleTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		B363D96218E2E9B3002FF42C /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = B363D93A18E2E9B3002FF42C /* NVHTarGzipExample */;
-			targetProxy = B363D96118E2E9B3002FF42C /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		B363D94718E2E9B3002FF42C /* InfoPlist.strings */ = {
@@ -347,14 +252,6 @@
 				B363D95118E2E9B3002FF42C /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		B363D96618E2E9B3002FF42C /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				B363D96718E2E9B3002FF42C /* en */,
-			);
-			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -460,48 +357,6 @@
 			};
 			name = Release;
 		};
-		B363D97118E2E9B3002FF42C /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/NVHTarGzipExample.app/NVHTarGzipExample";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "NVHTarGzipExample/NVHTarGzipExample-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "NVHTarGzipExampleTests/NVHTarGzipExampleTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
-			};
-			name = Debug;
-		};
-		B363D97218E2E9B3002FF42C /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/NVHTarGzipExample.app/NVHTarGzipExample";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "NVHTarGzipExample/NVHTarGzipExample-Prefix.pch";
-				INFOPLIST_FILE = "NVHTarGzipExampleTests/NVHTarGzipExampleTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -519,15 +374,6 @@
 			buildConfigurations = (
 				B363D96E18E2E9B3002FF42C /* Debug */,
 				B363D96F18E2E9B3002FF42C /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		B363D97018E2E9B3002FF42C /* Build configuration list for PBXNativeTarget "NVHTarGzipExampleTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				B363D97118E2E9B3002FF42C /* Debug */,
-				B363D97218E2E9B3002FF42C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
