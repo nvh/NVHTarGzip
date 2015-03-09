@@ -62,13 +62,14 @@ NSString * const NVHGzipFileZlibErrorDomain = @"io.nvh.targzip.zlib.error";
             break;
     }
 
-    if (error != NULL) {
-        *error =     [NSError errorWithDomain:NVHGzipFileZlibErrorDomain
-                                         code:result
-                                     userInfo:@{NSLocalizedDescriptionKey:localizedDescription}];
+    BOOL success = (result == 0);
+
+    if (!success && error != NULL) {
+        *error = [NSError errorWithDomain:NVHGzipFileZlibErrorDomain
+                                     code:result
+                                 userInfo:@{NSLocalizedDescriptionKey:localizedDescription}];
     }
 
-    BOOL success = (result == 0);
     return success;
 }
 
