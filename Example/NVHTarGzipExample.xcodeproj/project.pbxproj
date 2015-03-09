@@ -18,6 +18,7 @@
 		B363D95518E2E9B3002FF42C /* NVHViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B363D95418E2E9B3002FF42C /* NVHViewController.m */; };
 		B363D95718E2E9B3002FF42C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B363D95618E2E9B3002FF42C /* Images.xcassets */; };
 		BCFB59281AADDCFB00230695 /* misc.forsale.tar.gz in Resources */ = {isa = PBXBuildFile; fileRef = BCFB59271AADDCFB00230695 /* misc.forsale.tar.gz */; };
+		BCFB592A1AADEEDE00230695 /* misc.forsale.tar in Resources */ = {isa = PBXBuildFile; fileRef = BCFB59291AADEEDE00230695 /* misc.forsale.tar */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +40,7 @@
 		B363D95618E2E9B3002FF42C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		B363D95D18E2E9B3002FF42C /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		BCFB59271AADDCFB00230695 /* misc.forsale.tar.gz */ = {isa = PBXFileReference; lastKnownFileType = archive.gzip; path = misc.forsale.tar.gz; sourceTree = "<group>"; };
+		BCFB59291AADEEDE00230695 /* misc.forsale.tar */ = {isa = PBXFileReference; lastKnownFileType = archive.tar; path = misc.forsale.tar; sourceTree = "<group>"; };
 		E1ABF667B52F0CA5459A48CF /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -113,6 +115,7 @@
 		B363D94518E2E9B3002FF42C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				BCFB59291AADEEDE00230695 /* misc.forsale.tar */,
 				BCFB59271AADDCFB00230695 /* misc.forsale.tar.gz */,
 				B363D94618E2E9B3002FF42C /* NVHTarGzipExample-Info.plist */,
 				B363D94718E2E9B3002FF42C /* InfoPlist.strings */,
@@ -185,6 +188,7 @@
 				B363D95718E2E9B3002FF42C /* Images.xcassets in Resources */,
 				BCFB59281AADDCFB00230695 /* misc.forsale.tar.gz in Resources */,
 				B363D94918E2E9B3002FF42C /* InfoPlist.strings in Resources */,
+				BCFB592A1AADEEDE00230695 /* misc.forsale.tar in Resources */,
 				B363D95218E2E9B3002FF42C /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

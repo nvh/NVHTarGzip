@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5053" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="mbN-Js-sdH">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7519.1" systemVersion="14D87h" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="mbN-Js-sdH">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7513.1"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -18,7 +19,6 @@
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JY4-hx-r9k" userLabel="Progress label">
                                 <rect key="frame" x="20" y="254" width="280" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="Fcw-iQ-Mrl"/>
                                 </constraints>
@@ -27,16 +27,23 @@
                             </label>
                             <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="OlO-cy-aUp">
                                 <rect key="frame" x="20" y="283" width="280" height="2"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </progressView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Icm-Fv-Iud">
-                                <rect key="frame" x="144" y="123" width="33" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Start">
+                                <rect key="frame" x="20" y="104" width="84" height="30"/>
+                                <state key="normal" title="Untar .tar.gz">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="unTarGzipFile:" destination="mbN-Js-sdH" eventType="touchUpInside" id="2br-fv-Vcv"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qOp-B2-JUg">
+                                <rect key="frame" x="20" y="134" width="61" height="30"/>
+                                <state key="normal" title="Untar tar">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="unTarFile:" destination="mbN-Js-sdH" eventType="touchUpInside" id="D1y-bb-S0l"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -45,16 +52,20 @@
                             <constraint firstItem="OlO-cy-aUp" firstAttribute="top" secondItem="JY4-hx-r9k" secondAttribute="bottom" constant="8" symbolic="YES" id="1Zo-l7-dIb"/>
                             <constraint firstItem="OlO-cy-aUp" firstAttribute="leading" secondItem="JY4-hx-r9k" secondAttribute="leading" id="37X-qm-RsF"/>
                             <constraint firstItem="OlO-cy-aUp" firstAttribute="trailing" secondItem="JY4-hx-r9k" secondAttribute="trailing" id="BoA-gX-49n"/>
+                            <constraint firstItem="Icm-Fv-Iud" firstAttribute="leading" secondItem="qOp-B2-JUg" secondAttribute="leading" id="I07-QX-uh5"/>
                             <constraint firstItem="JY4-hx-r9k" firstAttribute="leading" secondItem="5XM-pO-XbK" secondAttribute="leading" constant="20" symbolic="YES" id="Lhl-CC-c6Y"/>
+                            <constraint firstItem="Icm-Fv-Iud" firstAttribute="leading" secondItem="JY4-hx-r9k" secondAttribute="leading" id="X4G-LC-Oon"/>
                             <constraint firstAttribute="trailing" secondItem="JY4-hx-r9k" secondAttribute="trailing" constant="20" symbolic="YES" id="Yhb-BY-vnd"/>
-                            <constraint firstItem="Icm-Fv-Iud" firstAttribute="centerX" secondItem="JY4-hx-r9k" secondAttribute="centerX" id="dVH-iK-I5r"/>
-                            <constraint firstItem="Icm-Fv-Iud" firstAttribute="top" secondItem="uU0-fu-4pj" secondAttribute="bottom" constant="103" id="nbd-RG-rpg"/>
+                            <constraint firstItem="qOp-B2-JUg" firstAttribute="top" secondItem="Icm-Fv-Iud" secondAttribute="bottom" id="eQN-kg-KRd"/>
+                            <constraint firstItem="JY4-hx-r9k" firstAttribute="top" secondItem="Icm-Fv-Iud" secondAttribute="bottom" constant="120" id="tYl-m1-HRu"/>
                             <constraint firstItem="OlO-cy-aUp" firstAttribute="centerY" secondItem="5XM-pO-XbK" secondAttribute="centerY" id="udn-ak-mkZ"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="progressLabel" destination="JY4-hx-r9k" id="E1B-h9-764"/>
                         <outlet property="progressView" destination="OlO-cy-aUp" id="XX2-Vw-SS3"/>
+                        <outlet property="unTarButton" destination="qOp-B2-JUg" id="8NS-hT-yXU"/>
+                        <outlet property="unTarGzipButton" destination="Icm-Fv-Iud" id="JUc-29-cZp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3C2-xz-nbc" sceneMemberID="firstResponder"/>
