@@ -14,133 +14,124 @@ static void *NVHProgressFractionCompletedObserverContext = &NVHProgressFractionC
 
 @interface NVHViewController ()
 
-@property (weak, nonatomic) IBOutlet UIButton *unTarGzipButton;
+@property (weak, nonatomic) IBOutlet UIProgressView *progressView;
+@property (weak, nonatomic) IBOutlet UILabel *progressLabel;
+
 @property (weak, nonatomic) IBOutlet UIButton *unTarButton;
-@property (weak, nonatomic) IBOutlet UIButton *tarGzipButton;
+@property (weak, nonatomic) IBOutlet UIButton *unGzipButton;
+@property (weak, nonatomic) IBOutlet UIButton *unTarGzipButton;
 @property (weak, nonatomic) IBOutlet UIButton *tarButton;
+@property (weak, nonatomic) IBOutlet UIButton *gzipButton;
+@property (weak, nonatomic) IBOutlet UIButton *tarGzipButton;
+
+@property (nonatomic) NSProgress *progress;
 
 @end
 
 
 @implementation NVHViewController
 
-- (void)setButtonEnabled:(BOOL)enabled
+- (void)setButtonsEnabled:(BOOL)enabled
 {
     self.unTarButton.enabled = enabled;
+    self.unGzipButton.enabled = enabled;
     self.unTarGzipButton.enabled = enabled;
-    self.tarGzipButton.enabled = enabled;
     self.tarButton.enabled = enabled;
+    self.gzipButton.enabled = enabled;
+    self.tarGzipButton.enabled = enabled;
 }
 
-- (IBAction)unTarGzipFile:(UIButton*)sender {
+- (void)prepareAction
+{
     [self.progressView setProgress:0 animated:NO];
-    [self setButtonEnabled:NO];
+    [self setButtonsEnabled:NO];
     
-    NSProgress* progress = [NSProgress progressWithTotalUnitCount:1];
-    NSString* keyPath = NSStringFromSelector(@selector(fractionCompleted));
-    [progress addObserver:self forKeyPath:keyPath options:NSKeyValueObservingOptionInitial context:NVHProgressFractionCompletedObserverContext];
-    [progress becomeCurrentWithPendingUnitCount:1];
+    self.progress = [NSProgress progressWithTotalUnitCount:1];
+    NSString *keyPath = NSStringFromSelector(@selector(fractionCompleted));
+    [self.progress addObserver:self forKeyPath:keyPath options:NSKeyValueObservingOptionInitial context:NVHProgressFractionCompletedObserverContext];
+    [self.progress becomeCurrentWithPendingUnitCount:1];
+}
+
+- (void)completeActionWithError:(NSError *)error
+{
+    [self setButtonsEnabled:YES];
     
-    [[NVHTarGzip sharedInstance] unTarGzipFileAtPath:self.demoSourceTarGzFilePath
-                                      toPath:self.demoDestinationFolderPath
-                                  completion:^(NSError* error)
+    [self.progress resignCurrent];
+    NSString *keyPath = NSStringFromSelector(@selector(fractionCompleted));
+    [self.progress removeObserver:self forKeyPath:keyPath];
+    
+    if (error != nil) {
+        self.progressLabel.text = error.localizedDescription;
+    }
+    else
     {
-        [self setButtonEnabled:YES];
-
-        [progress resignCurrent];
-        [progress removeObserver:self forKeyPath:keyPath];
-        
-        if (error != nil) {
-            self.progressLabel.text = error.localizedDescription;
-        }
-        else
-        {
-            self.progressLabel.text = @"Done!";
-        }
-    }];
+        self.progressLabel.text = @"Done!";
+    }
 }
 
-- (IBAction)unTarFile:(UIButton*)sender {
-    [self.progressView setProgress:0 animated:NO];
-    [self setButtonEnabled:NO];
-
-    NSProgress* progress = [NSProgress progressWithTotalUnitCount:1];
-    NSString* keyPath = NSStringFromSelector(@selector(fractionCompleted));
-    [progress addObserver:self forKeyPath:keyPath options:NSKeyValueObservingOptionInitial context:NVHProgressFractionCompletedObserverContext];
-    [progress becomeCurrentWithPendingUnitCount:1];
-    
+- (IBAction)unTarFile:(UIButton*)sender
+{
+    [self prepareAction];
     [[NVHTarGzip sharedInstance] unTarFileAtPath:self.demoSourceTarFilePath
-                                  toPath:self.demoDestinationFolderPath
-                              completion:^(NSError* error)
-    {
-        [self setButtonEnabled:YES];
+                                          toPath:self.demoDestinationFolderPath
+                                      completion:^(NSError *error)
+     {
+         [self completeActionWithError:error];
+     }];
+}
 
-        [progress resignCurrent];
-        [progress removeObserver:self forKeyPath:keyPath];
-        
-        if (error != nil) {
-            self.progressLabel.text = error.localizedDescription;
-        }
-        else
-        {
-            self.progressLabel.text = @"Done!";
-        }
+- (IBAction)unGzipFile:(UIButton*)sender
+{
+    [self prepareAction];
+    [[NVHTarGzip sharedInstance] unGzipFileAtPath:self.demoSourceTarGzipFilePath
+                                              toPath:self.demoDestinationUnGzipPath
+                                          completion:^(NSError *error)
+     {
+         [self completeActionWithError:error];
+     }];
+}
+
+- (IBAction)unTarGzipFile:(UIButton*)sender
+{
+    [self prepareAction];
+    [[NVHTarGzip sharedInstance] unTarGzipFileAtPath:self.demoSourceTarGzipFilePath
+                                      toPath:self.demoDestinationFolderPath
+                                  completion:^(NSError *error)
+    {
+        [self completeActionWithError:error];
     }];
 }
 
-- (IBAction)tarFile:(UIButton*)sender {
-    [self.progressView setProgress:0 animated:NO];
-    [self setButtonEnabled:NO];
-    
-    NSProgress* progress = [NSProgress progressWithTotalUnitCount:1];
-    NSString* keyPath = NSStringFromSelector(@selector(fractionCompleted));
-    [progress addObserver:self forKeyPath:keyPath options:NSKeyValueObservingOptionInitial context:NVHProgressFractionCompletedObserverContext];
-    [progress becomeCurrentWithPendingUnitCount:1];
-    
+- (IBAction)tarFile:(UIButton*)sender
+{
+    [self prepareAction];
     [[NVHTarGzip sharedInstance] tarFileAtPath:self.demoDestinationFolderPath
                                 toPath:self.demoDestinationTarPath
-                            completion:^(NSError* error)
+                            completion:^(NSError *error)
     {
-        [self setButtonEnabled:YES];
-
-        [progress resignCurrent];
-        [progress removeObserver:self forKeyPath:keyPath];
-        
-        if (error != nil) {
-            self.progressLabel.text = error.localizedDescription;
-        } else {
-            self.progressLabel.text = @"Done!";
-        }
-        
-        sender.enabled = YES;
+        [self completeActionWithError:error];
     }];
 }
 
-- (IBAction)tarGzipFile:(UIButton*)sender {
-    [self.progressView setProgress:0 animated:NO];
-    [self setButtonEnabled:NO];
-    
-    NSProgress* progress = [NSProgress progressWithTotalUnitCount:1];
-    NSString* keyPath = NSStringFromSelector(@selector(fractionCompleted));
-    [progress addObserver:self forKeyPath:keyPath options:NSKeyValueObservingOptionInitial context:NVHProgressFractionCompletedObserverContext];
-    [progress becomeCurrentWithPendingUnitCount:1];
-    
+- (IBAction)gzipFile:(UIButton*)sender
+{
+    [self prepareAction];
+    [[NVHTarGzip sharedInstance] gzipFileAtPath:self.demoSourceTarFilePath
+                                            toPath:self.demoDestinationGzipPath
+                                        completion:^(NSError *error)
+     {
+         [self completeActionWithError:error];
+     }];
+}
+
+- (IBAction)tarGzipFile:(UIButton*)sender
+{
+    [self prepareAction];
     [[NVHTarGzip sharedInstance] tarGzipFileAtPath:self.demoDestinationFolderPath
-                                            toPath:self.demoDestinationTarGzPath
-                                        completion:^(NSError* error)
+                                            toPath:self.demoDestinationTarGzipPath
+                                        completion:^(NSError *error)
     {
-        [self setButtonEnabled:YES];
-        
-        [progress resignCurrent];
-        [progress removeObserver:self forKeyPath:keyPath];
-        
-        if (error != nil) {
-            self.progressLabel.text = error.localizedDescription;
-        } else {
-            self.progressLabel.text = @"Done!";
-        }
-        
-        sender.enabled = YES;
+        [self completeActionWithError:error];
     }];
 }
 
@@ -148,21 +139,35 @@ static void *NVHProgressFractionCompletedObserverContext = &NVHProgressFractionC
     return [[NSBundle mainBundle] pathForResource:@"misc.forsale" ofType:@"tar"];
 }
 
-- (NSString *)demoSourceTarGzFilePath {
+- (NSString *)demoSourceTarGzipFilePath {
     return [[NSBundle mainBundle] pathForResource:@"misc.forsale.tar" ofType:@"gz"];
 }
 
 - (NSString*)demoDestinationTarPath {
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString* documentPath = paths[0];
-    NSString* destinationPath = [documentPath stringByAppendingPathComponent:@"misc-forsale.tar"];
+    NSString* destinationPath = [documentPath stringByAppendingPathComponent:@"misc-forsale-tared.tar"];
     return destinationPath;
 }
 
-- (NSString*)demoDestinationTarGzPath {
+- (NSString*)demoDestinationTarGzipPath {
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString* documentPath = paths[0];
-    NSString* destinationPath = [documentPath stringByAppendingPathComponent:@"misc-forsale.tar.gz"];
+    NSString* destinationPath = [documentPath stringByAppendingPathComponent:@"misc-forsale-tared.tar.gz"];
+    return destinationPath;
+}
+
+- (NSString*)demoDestinationUnGzipPath {
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString* documentPath = paths[0];
+    NSString* destinationPath = [documentPath stringByAppendingPathComponent:@"misc-forsale-ungzipped.tar"];
+    return destinationPath;
+}
+
+- (NSString*)demoDestinationGzipPath {
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString* documentPath = paths[0];
+    NSString* destinationPath = [documentPath stringByAppendingPathComponent:@"misc-forsale-gzipped.tar.gz"];
     return destinationPath;
 }
 

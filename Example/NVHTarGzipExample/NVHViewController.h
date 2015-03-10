@@ -9,6 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface NVHViewController : UIViewController
-@property (nonatomic,strong) IBOutlet UIProgressView* progressView;
-@property (nonatomic,strong) IBOutlet UILabel* progressLabel;
+
 @end

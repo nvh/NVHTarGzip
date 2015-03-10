@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -29,17 +30,26 @@
                                 <rect key="frame" x="20" y="283" width="280" height="2"/>
                             </progressView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Icm-Fv-Iud">
-                                <rect key="frame" x="20" y="104" width="84" height="30"/>
-                                <state key="normal" title="Untar .tar.gz">
+                                <rect key="frame" x="20" y="92" width="70" height="30"/>
+                                <state key="normal" title="UntarGzip">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="unTarGzipFile:" destination="mbN-Js-sdH" eventType="touchUpInside" id="2br-fv-Vcv"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OXi-5e-8SG">
+                                <rect key="frame" x="20" y="62" width="51" height="30"/>
+                                <state key="normal" title="UnGzip">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="unGzipFile:" destination="mbN-Js-sdH" eventType="touchUpInside" id="LNa-kF-xa6"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qOp-B2-JUg">
-                                <rect key="frame" x="20" y="134" width="61" height="30"/>
-                                <state key="normal" title="Untar tar">
+                                <rect key="frame" x="20" y="32" width="38" height="30"/>
+                                <state key="normal" title="Untar">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -47,7 +57,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZmQ-EH-2pH">
-                                <rect key="frame" x="20" y="194" width="30" height="30"/>
+                                <rect key="frame" x="20" y="122" width="30" height="30"/>
                                 <state key="normal" title="Tar">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -55,48 +65,63 @@
                                     <action selector="tarFile:" destination="mbN-Js-sdH" eventType="touchUpInside" id="15b-bJ-lMa"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uL2-LO-ySH">
+                                <rect key="frame" x="20" y="152" width="32" height="30"/>
+                                <state key="normal" title="Gzip">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="gzipFile:" destination="mbN-Js-sdH" eventType="touchUpInside" id="DEI-vC-IZ5"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(Untar any of the examples before Taring)" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="170" translatesAutoresizingMaskIntoConstraints="NO" id="6CR-qe-bbJ">
+                                <rect key="frame" x="20" y="293" width="280" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oIN-CA-1GI">
-                                <rect key="frame" x="20" y="164" width="57" height="30"/>
-                                <state key="normal" title="Tar Gzip">
+                                <rect key="frame" x="20" y="182" width="52" height="30"/>
+                                <state key="normal" title="TarGzip">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="tarGzipFile:" destination="mbN-Js-sdH" eventType="touchUpInside" id="2tW-Vh-Ju7"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(Untar any of the examples before Taring)" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="170" translatesAutoresizingMaskIntoConstraints="NO" id="6CR-qe-bbJ">
-                                <rect key="frame" x="20" y="224" width="280" height="34"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <color key="textColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="6CR-qe-bbJ" firstAttribute="trailing" secondItem="JY4-hx-r9k" secondAttribute="trailing" id="00n-el-9lS"/>
+                            <constraint firstItem="oIN-CA-1GI" firstAttribute="leading" secondItem="uL2-LO-ySH" secondAttribute="leading" id="0eu-WF-b3C"/>
                             <constraint firstItem="OlO-cy-aUp" firstAttribute="top" secondItem="JY4-hx-r9k" secondAttribute="bottom" constant="8" symbolic="YES" id="1Zo-l7-dIb"/>
                             <constraint firstItem="OlO-cy-aUp" firstAttribute="leading" secondItem="JY4-hx-r9k" secondAttribute="leading" id="37X-qm-RsF"/>
-                            <constraint firstItem="oIN-CA-1GI" firstAttribute="leading" secondItem="ZmQ-EH-2pH" secondAttribute="leading" id="4eO-h6-Ffc"/>
-                            <constraint firstItem="oIN-CA-1GI" firstAttribute="top" secondItem="qOp-B2-JUg" secondAttribute="bottom" id="8hL-uA-IZo"/>
+                            <constraint firstItem="Icm-Fv-Iud" firstAttribute="leading" secondItem="OXi-5e-8SG" secondAttribute="leading" id="77u-X7-gsV"/>
                             <constraint firstItem="OlO-cy-aUp" firstAttribute="trailing" secondItem="JY4-hx-r9k" secondAttribute="trailing" id="BoA-gX-49n"/>
-                            <constraint firstItem="Icm-Fv-Iud" firstAttribute="leading" secondItem="qOp-B2-JUg" secondAttribute="leading" id="I07-QX-uh5"/>
-                            <constraint firstItem="6CR-qe-bbJ" firstAttribute="top" secondItem="ZmQ-EH-2pH" secondAttribute="bottom" id="JA6-CW-OwB"/>
                             <constraint firstItem="JY4-hx-r9k" firstAttribute="leading" secondItem="5XM-pO-XbK" secondAttribute="leading" constant="20" symbolic="YES" id="Lhl-CC-c6Y"/>
-                            <constraint firstItem="Icm-Fv-Iud" firstAttribute="leading" secondItem="JY4-hx-r9k" secondAttribute="leading" id="X4G-LC-Oon"/>
+                            <constraint firstItem="Icm-Fv-Iud" firstAttribute="top" secondItem="OXi-5e-8SG" secondAttribute="bottom" id="Pt4-5D-jHl"/>
+                            <constraint firstItem="qOp-B2-JUg" firstAttribute="leading" secondItem="5XM-pO-XbK" secondAttribute="leadingMargin" constant="4" id="VyG-Hl-kS4"/>
                             <constraint firstAttribute="trailing" secondItem="JY4-hx-r9k" secondAttribute="trailing" constant="20" symbolic="YES" id="Yhb-BY-vnd"/>
-                            <constraint firstItem="qOp-B2-JUg" firstAttribute="top" secondItem="Icm-Fv-Iud" secondAttribute="bottom" id="eQN-kg-KRd"/>
-                            <constraint firstItem="oIN-CA-1GI" firstAttribute="leading" secondItem="qOp-B2-JUg" secondAttribute="leading" id="nDj-4h-99u"/>
-                            <constraint firstItem="JY4-hx-r9k" firstAttribute="top" secondItem="Icm-Fv-Iud" secondAttribute="bottom" constant="120" id="tYl-m1-HRu"/>
-                            <constraint firstItem="ZmQ-EH-2pH" firstAttribute="top" secondItem="oIN-CA-1GI" secondAttribute="bottom" id="uKu-T9-00P"/>
+                            <constraint firstItem="6CR-qe-bbJ" firstAttribute="top" secondItem="JY4-hx-r9k" secondAttribute="bottom" constant="18" id="gy3-HZ-V0b"/>
+                            <constraint firstItem="ZmQ-EH-2pH" firstAttribute="top" secondItem="Icm-Fv-Iud" secondAttribute="bottom" id="hEY-GV-hEN"/>
+                            <constraint firstItem="qOp-B2-JUg" firstAttribute="leading" secondItem="OXi-5e-8SG" secondAttribute="leading" id="jdy-Ib-6X1"/>
+                            <constraint firstItem="qOp-B2-JUg" firstAttribute="top" secondItem="uU0-fu-4pj" secondAttribute="bottom" constant="12" id="kjH-WF-6zK"/>
+                            <constraint firstItem="oIN-CA-1GI" firstAttribute="leading" secondItem="ZmQ-EH-2pH" secondAttribute="leading" id="nKC-R7-TBp"/>
+                            <constraint firstItem="oIN-CA-1GI" firstAttribute="top" secondItem="uL2-LO-ySH" secondAttribute="bottom" id="pVv-FH-tzs"/>
+                            <constraint firstItem="Icm-Fv-Iud" firstAttribute="leading" secondItem="ZmQ-EH-2pH" secondAttribute="leading" id="pmI-T0-peB"/>
+                            <constraint firstItem="uL2-LO-ySH" firstAttribute="top" secondItem="ZmQ-EH-2pH" secondAttribute="bottom" id="rVu-6e-5gg"/>
                             <constraint firstItem="OlO-cy-aUp" firstAttribute="centerY" secondItem="5XM-pO-XbK" secondAttribute="centerY" id="udn-ak-mkZ"/>
+                            <constraint firstItem="OXi-5e-8SG" firstAttribute="top" secondItem="qOp-B2-JUg" secondAttribute="bottom" id="wHj-QY-HAW"/>
                             <constraint firstItem="6CR-qe-bbJ" firstAttribute="leading" secondItem="JY4-hx-r9k" secondAttribute="leading" id="xTK-uv-mVm"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="gzipButton" destination="uL2-LO-ySH" id="Jv8-g9-j7p"/>
                         <outlet property="progressLabel" destination="JY4-hx-r9k" id="E1B-h9-764"/>
                         <outlet property="progressView" destination="OlO-cy-aUp" id="XX2-Vw-SS3"/>
                         <outlet property="tarButton" destination="ZmQ-EH-2pH" id="sWm-Fr-1pU"/>
                         <outlet property="tarGzipButton" destination="oIN-CA-1GI" id="1zQ-Gq-7gb"/>
+                        <outlet property="unGzipButton" destination="OXi-5e-8SG" id="EXt-oS-UW0"/>
                         <outlet property="unTarButton" destination="qOp-B2-JUg" id="8NS-hT-yXU"/>
                         <outlet property="unTarGzipButton" destination="Icm-Fv-Iud" id="JUc-29-cZp"/>
                     </connections>
