@@ -20,7 +20,7 @@ const int64_t NVHProgressMaxTotalUnitCount = 100;
 
 @interface NVHProgress : NSObject
 
-- (instancetype)initWithVirtualTotalUnitCount:(int64_t)virtualTotalUnitCount;
+- (void)setVirtualTotalUnitCount:(int64_t)virtualTotalUnitCount;
 - (void)setVirtualCompletedUnitCount:(int64_t)virtualUnitCount;
 
 @end
@@ -36,7 +36,8 @@ const int64_t NVHProgressMaxTotalUnitCount = 100;
 
 @implementation NVHProgress
 
-- (instancetype)initWithVirtualTotalUnitCount:(int64_t)virtualTotalUnitCount
+// Designated initializer;
+- (instancetype)init
 {
     self = [super init];
     if (!self) { return nil; }
@@ -45,9 +46,12 @@ const int64_t NVHProgressMaxTotalUnitCount = 100;
     self.progress.cancellable = NO;
     self.progress.pausable = NO;
     
-    self.countFraction = NVHProgressMaxTotalUnitCount / (float)virtualTotalUnitCount;
-
     return self;
+}
+
+- (void)setVirtualTotalUnitCount:(int64_t)virtualTotalUnitCount
+{
+    self.countFraction = NVHProgressMaxTotalUnitCount / (float)virtualTotalUnitCount;
 }
 
 - (void)setVirtualCompletedUnitCount:(int64_t)virtualUnitCount
@@ -90,17 +94,27 @@ const int64_t NVHProgressMaxTotalUnitCount = 100;
     return [attr fileSize];
 }
 
-- (void)setupProgressForFileSize
+- (void)setupProgress
 {
-    self.progress = [[NVHProgress alloc] initWithVirtualTotalUnitCount:self.fileSize];
+    self.progress = [[NVHProgress alloc] init];
 }
 
-- (void)updateProgressWithVirtualCompletedUnitCount:(int64_t)virtualUnitCount
+- (void)updateProgressVirtualTotalUnitCount:(int64_t)virtualUnitCount
+{
+    [self.progress setVirtualTotalUnitCount:virtualUnitCount];
+}
+
+- (void)updateProgressVirtualCompletedUnitCount:(int64_t)virtualUnitCount
 {
     [self.progress setVirtualCompletedUnitCount:virtualUnitCount];
 }
 
-- (void)updateProgressWithTotalVirtualCompletedUnitCount
+- (void)updateProgressVirtualTotalUnitCountWithFileSize
+{
+    [self updateProgressVirtualTotalUnitCount:self.fileSize];
+}
+
+- (void)updateProgressVirtualCompletedUnitCountWithTotal
 {
     [self.progress setVirtualCompletedUnitCountToTotal];
 }

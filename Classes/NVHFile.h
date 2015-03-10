@@ -16,8 +16,10 @@
 
 - (instancetype)initWithPath:(NSString *)filePath;
 
-- (void)setupProgressForFileSize;
-- (void)updateProgressWithVirtualCompletedUnitCount:(int64_t)virtualUnitCount;
-- (void)updateProgressWithTotalVirtualCompletedUnitCount;
+- (void)setupProgress;
+- (void)updateProgressVirtualTotalUnitCountWithFileSize;
+- (void)updateProgressVirtualTotalUnitCount:(int64_t)virtualUnitCount;
+- (void)updateProgressVirtualCompletedUnitCount:(int64_t)virtualUnitCount;
+- (void)updateProgressVirtualCompletedUnitCountWithTotal;
 
 @end

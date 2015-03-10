@@ -21,12 +21,12 @@ NSString * const NVHGzipFileZlibErrorDomain = @"io.nvh.targzip.zlib.error";
 @implementation NVHGzipFile
 
 - (BOOL)inflateToPath:(NSString *)destinationPath error:(NSError **)error {
-    [self setupProgressForFileSize];
+    [self setupProgress];
     return [self innerInflateToPath:destinationPath error:error];
 }
 
 - (void)inflateToPath:(NSString *)destinationPath completion:(void(^)(NSError *))completion {
-    [self setupProgressForFileSize];
+    [self setupProgress];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         NSError *error = nil;
         [self innerInflateToPath:destinationPath error:&error];
@@ -37,6 +37,7 @@ NSString * const NVHGzipFileZlibErrorDomain = @"io.nvh.targzip.zlib.error";
 }
 
 - (BOOL)innerInflateToPath:(NSString *)destinationPath error:(NSError **)error {
+    [self updateProgressVirtualTotalUnitCountWithFileSize];
     NSInteger result = -3;
     NSString *localizedDescription = @"";
     if (self.filePath)
@@ -86,7 +87,7 @@ NSString * const NVHGzipFileZlibErrorDomain = @"io.nvh.targzip.zlib.error";
 	{
 		NSInteger read = gzread(source, buffer, length);
         NSInteger dataOffSet = gzoffset(source);
-        [self updateProgressWithVirtualCompletedUnitCount:dataOffSet];
+        [self updateProgressVirtualCompletedUnitCount:dataOffSet];
 		if (read > 0)
 		{
             CFWriteStreamWrite(writeStream, buffer, read);
@@ -110,7 +111,7 @@ NSString * const NVHGzipFileZlibErrorDomain = @"io.nvh.targzip.zlib.error";
         }
 
 	}
-    [self updateProgressWithTotalVirtualCompletedUnitCount];
+    [self updateProgressVirtualCompletedUnitCountWithTotal];
 	gzclose(source);
 	free(buffer);
     CFWriteStreamClose(writeStream);
