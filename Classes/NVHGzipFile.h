@@ -14,4 +14,7 @@
 - (BOOL)inflateToPath:(NSString *)destinationPath error:(NSError **)error;
 - (void)inflateToPath:(NSString *)destinationPath completion:(void(^)(NSError *))completion;
 
+- (BOOL)deflateFromPath:(NSString *)sourcePath error:(NSError **)error;
+- (void)deflateFromPath:(NSString *)sourcePath completion:(void(^)(NSError *))completion;
+
 @end

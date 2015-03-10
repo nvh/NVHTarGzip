@@ -16,6 +16,7 @@ static void *NVHProgressFractionCompletedObserverContext = &NVHProgressFractionC
 
 @property (weak, nonatomic) IBOutlet UIButton *unTarGzipButton;
 @property (weak, nonatomic) IBOutlet UIButton *unTarButton;
+@property (weak, nonatomic) IBOutlet UIButton *tarGzipButton;
 @property (weak, nonatomic) IBOutlet UIButton *tarButton;
 
 @end
@@ -23,23 +24,28 @@ static void *NVHProgressFractionCompletedObserverContext = &NVHProgressFractionC
 
 @implementation NVHViewController
 
+- (void)setButtonEnabled:(BOOL)enabled
+{
+    self.unTarButton.enabled = enabled;
+    self.unTarGzipButton.enabled = enabled;
+    self.tarGzipButton.enabled = enabled;
+    self.tarButton.enabled = enabled;
+}
+
 - (IBAction)unTarGzipFile:(UIButton*)sender {
     [self.progressView setProgress:0 animated:NO];
-    self.unTarButton.enabled = NO;
-    self.unTarGzipButton.enabled = NO;
-    self.tarButton.enabled = NO;
+    [self setButtonEnabled:NO];
     
     NSProgress* progress = [NSProgress progressWithTotalUnitCount:1];
     NSString* keyPath = NSStringFromSelector(@selector(fractionCompleted));
     [progress addObserver:self forKeyPath:keyPath options:NSKeyValueObservingOptionInitial context:NVHProgressFractionCompletedObserverContext];
     [progress becomeCurrentWithPendingUnitCount:1];
     
-    [[NVHTarGzip shared] unTarGzipFileAtPath:self.demoSourceTarGzFilePath
+    [[NVHTarGzip sharedInstance] unTarGzipFileAtPath:self.demoSourceTarGzFilePath
                                       toPath:self.demoDestinationFolderPath
-                                  completion:^(NSError* error) {
-        self.unTarButton.enabled = YES;
-        self.unTarGzipButton.enabled = YES;
-        self.tarButton.enabled = YES;
+                                  completion:^(NSError* error)
+    {
+        [self setButtonEnabled:YES];
 
         [progress resignCurrent];
         [progress removeObserver:self forKeyPath:keyPath];
@@ -56,21 +62,18 @@ static void *NVHProgressFractionCompletedObserverContext = &NVHProgressFractionC
 
 - (IBAction)unTarFile:(UIButton*)sender {
     [self.progressView setProgress:0 animated:NO];
-    self.unTarButton.enabled = NO;
-    self.unTarGzipButton.enabled = NO;
-    self.tarButton.enabled = NO;
+    [self setButtonEnabled:NO];
 
     NSProgress* progress = [NSProgress progressWithTotalUnitCount:1];
     NSString* keyPath = NSStringFromSelector(@selector(fractionCompleted));
     [progress addObserver:self forKeyPath:keyPath options:NSKeyValueObservingOptionInitial context:NVHProgressFractionCompletedObserverContext];
     [progress becomeCurrentWithPendingUnitCount:1];
     
-    [[NVHTarGzip shared] unTarFileAtPath:self.demoSourceTarFilePath
+    [[NVHTarGzip sharedInstance] unTarFileAtPath:self.demoSourceTarFilePath
                                   toPath:self.demoDestinationFolderPath
-                              completion:^(NSError* error) {
-        self.unTarButton.enabled = YES;
-        self.unTarGzipButton.enabled = YES;
-        self.tarButton.enabled = YES;
+                              completion:^(NSError* error)
+    {
+        [self setButtonEnabled:YES];
 
         [progress resignCurrent];
         [progress removeObserver:self forKeyPath:keyPath];
@@ -87,22 +90,47 @@ static void *NVHProgressFractionCompletedObserverContext = &NVHProgressFractionC
 
 - (IBAction)tarFile:(UIButton*)sender {
     [self.progressView setProgress:0 animated:NO];
-    self.unTarButton.enabled = NO;
-    self.unTarGzipButton.enabled = NO;
-    self.tarButton.enabled = NO;
+    [self setButtonEnabled:NO];
     
     NSProgress* progress = [NSProgress progressWithTotalUnitCount:1];
     NSString* keyPath = NSStringFromSelector(@selector(fractionCompleted));
     [progress addObserver:self forKeyPath:keyPath options:NSKeyValueObservingOptionInitial context:NVHProgressFractionCompletedObserverContext];
     [progress becomeCurrentWithPendingUnitCount:1];
     
-    [[NVHTarGzip shared] tarFileAtPath:self.demoDestinationFolderPath
+    [[NVHTarGzip sharedInstance] tarFileAtPath:self.demoDestinationFolderPath
                                 toPath:self.demoDestinationTarPath
-                            completion:^(NSError* error) {
-        self.unTarButton.enabled = YES;
-        self.unTarGzipButton.enabled = YES;
-        self.tarButton.enabled = YES;
+                            completion:^(NSError* error)
+    {
+        [self setButtonEnabled:YES];
 
+        [progress resignCurrent];
+        [progress removeObserver:self forKeyPath:keyPath];
+        
+        if (error != nil) {
+            self.progressLabel.text = error.localizedDescription;
+        } else {
+            self.progressLabel.text = @"Done!";
+        }
+        
+        sender.enabled = YES;
+    }];
+}
+
+- (IBAction)tarGzipFile:(UIButton*)sender {
+    [self.progressView setProgress:0 animated:NO];
+    [self setButtonEnabled:NO];
+    
+    NSProgress* progress = [NSProgress progressWithTotalUnitCount:1];
+    NSString* keyPath = NSStringFromSelector(@selector(fractionCompleted));
+    [progress addObserver:self forKeyPath:keyPath options:NSKeyValueObservingOptionInitial context:NVHProgressFractionCompletedObserverContext];
+    [progress becomeCurrentWithPendingUnitCount:1];
+    
+    [[NVHTarGzip sharedInstance] tarGzipFileAtPath:self.demoDestinationFolderPath
+                                            toPath:self.demoDestinationTarGzPath
+                                        completion:^(NSError* error)
+    {
+        [self setButtonEnabled:YES];
+        
         [progress resignCurrent];
         [progress removeObserver:self forKeyPath:keyPath];
         
@@ -128,6 +156,13 @@ static void *NVHProgressFractionCompletedObserverContext = &NVHProgressFractionC
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString* documentPath = paths[0];
     NSString* destinationPath = [documentPath stringByAppendingPathComponent:@"misc-forsale.tar"];
+    return destinationPath;
+}
+
+- (NSString*)demoDestinationTarGzPath {
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString* documentPath = paths[0];
+    NSString* destinationPath = [documentPath stringByAppendingPathComponent:@"misc-forsale.tar.gz"];
     return destinationPath;
 }
 
