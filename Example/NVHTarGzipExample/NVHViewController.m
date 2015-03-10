@@ -27,6 +27,7 @@ static void *NVHProgressFractionCompletedObserverContext = &NVHProgressFractionC
     [self.progressView setProgress:0 animated:NO];
     self.unTarButton.enabled = NO;
     self.unTarGzipButton.enabled = NO;
+    self.tarButton.enabled = NO;
     
     NSProgress* progress = [NSProgress progressWithTotalUnitCount:1];
     NSString* keyPath = NSStringFromSelector(@selector(fractionCompleted));
@@ -36,7 +37,8 @@ static void *NVHProgressFractionCompletedObserverContext = &NVHProgressFractionC
     [[NVHTarGzip shared] unTarGzipFileAtPath:self.demoSourceTarGzFilePath toPath:self.demoDestinationFolderPath completion:^(NSError* error) {
         self.unTarButton.enabled = YES;
         self.unTarGzipButton.enabled = YES;
-        
+        self.tarButton.enabled = YES;
+
         [progress resignCurrent];
         [progress removeObserver:self forKeyPath:keyPath];
         
@@ -54,6 +56,7 @@ static void *NVHProgressFractionCompletedObserverContext = &NVHProgressFractionC
     [self.progressView setProgress:0 animated:NO];
     self.unTarButton.enabled = NO;
     self.unTarGzipButton.enabled = NO;
+    self.tarButton.enabled = NO;
 
     NSProgress* progress = [NSProgress progressWithTotalUnitCount:1];
     NSString* keyPath = NSStringFromSelector(@selector(fractionCompleted));
@@ -63,7 +66,8 @@ static void *NVHProgressFractionCompletedObserverContext = &NVHProgressFractionC
     [[NVHTarGzip shared] unTarFileAtPath:self.demoSourceTarFilePath toPath:self.demoDestinationFolderPath completion:^(NSError* error) {
         self.unTarButton.enabled = YES;
         self.unTarGzipButton.enabled = YES;
-        
+        self.tarButton.enabled = YES;
+
         [progress resignCurrent];
         [progress removeObserver:self forKeyPath:keyPath];
         
@@ -78,7 +82,10 @@ static void *NVHProgressFractionCompletedObserverContext = &NVHProgressFractionC
 }
 
 - (IBAction)tarFile:(UIButton*)sender {
-    sender.enabled = NO;
+    [self.progressView setProgress:0 animated:NO];
+    self.unTarButton.enabled = NO;
+    self.unTarGzipButton.enabled = NO;
+    self.tarButton.enabled = NO;
     
     self.progressLabel.text = @"Packing...";
     
@@ -88,6 +95,10 @@ static void *NVHProgressFractionCompletedObserverContext = &NVHProgressFractionC
     //    [progress becomeCurrentWithPendingUnitCount:1];
     
     [[NVHTarGzip shared] tarFileAtPath:self.demoDestinationFolderPath toPath:self.demoDestinationTarPath completion:^(NSError* error) {
+        self.unTarButton.enabled = YES;
+        self.unTarGzipButton.enabled = YES;
+        self.tarButton.enabled = YES;
+
         //        [progress resignCurrent];
         //        [progress removeObserver:self forKeyPath:keyPath];
         
