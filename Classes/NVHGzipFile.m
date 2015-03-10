@@ -9,9 +9,20 @@
 #import <zlib.h>
 #import "NVHGzipFile.h"
 
-NSString * const NVHGzipFileZlibErrorDomain = @"io.nvh.targzip.zlib.error";
+NSString *const NVHGzipFileZlibErrorDomain = @"io.nvh.targzip.zlib.error";
 
-@interface NVHGzipFile()
+
+typedef NS_ENUM(NSInteger, NVHGzipFileErrorType)
+{
+    NVHGzipFileErrorTypeNone = 0,
+    NVHGzipFileErrorTypeDecompressionFailed = -1,
+    NVHGzipFileErrorTypeUnexpectedZlibState = -2,
+    NVHGzipFileErrorTypeSourceFilePathIsNil = -3,
+    NVHGzipFileErrorTypeUnknown = -4
+};
+
+
+@interface NVHGzipFile ()
 
 @property (nonatomic,assign) CGFloat fileSizeFraction;
 
@@ -38,31 +49,42 @@ NSString * const NVHGzipFileZlibErrorDomain = @"io.nvh.targzip.zlib.error";
 
 - (BOOL)innerInflateToPath:(NSString *)destinationPath error:(NSError **)error {
     [self updateProgressVirtualTotalUnitCountWithFileSize];
-    NSInteger result = -3;
-    NSString *localizedDescription = @"";
+    
+    NVHGzipFileErrorType result = NVHGzipFileErrorTypeNone;
+    
     if (self.filePath)
     {
         [[NSFileManager defaultManager] createFileAtPath:destinationPath contents:nil attributes:nil];
         result = [self inflateGzip:self.filePath destination:destinationPath];
     }
-    switch (result) {
-        case -1:
-            localizedDescription = NSLocalizedString(@"Decompression failed", @"");
-            break;
-        case -2:
-            localizedDescription = NSLocalizedString(@"Unexpected state from zlib", @"");
-            break;
-        case -3:
-            localizedDescription = NSLocalizedString(@"Source file path is nil", @"");
-            break;
-        default:
-            localizedDescription = NSLocalizedString(@"Unknown error",@"");
-            break;
+    else
+    {
+        result = NVHGzipFileErrorTypeSourceFilePathIsNil;
     }
 
-    BOOL success = (result == 0);
+    BOOL success = (result == NVHGzipFileErrorTypeNone);
 
     if (!success && error != NULL) {
+        NSString *localizedDescription = nil;
+
+        switch (result) {
+            case NVHGzipFileErrorTypeDecompressionFailed:
+                localizedDescription = NSLocalizedString(@"Decompression failed", @"");
+                break;
+            case NVHGzipFileErrorTypeUnexpectedZlibState:
+                localizedDescription = NSLocalizedString(@"Unexpected state from zlib", @"");
+                break;
+            case NVHGzipFileErrorTypeSourceFilePathIsNil:
+                localizedDescription = NSLocalizedString(@"Source file path is nil", @"");
+                break;
+            case NVHGzipFileErrorTypeUnknown:
+                localizedDescription = NSLocalizedString(@"Unknown error",@"");
+                break;
+            default:
+                localizedDescription = @"";
+                break;
+        }
+
         *error = [NSError errorWithDomain:NVHGzipFileZlibErrorDomain
                                      code:result
                                  userInfo:@{NSLocalizedDescriptionKey:localizedDescription}];
@@ -102,11 +124,11 @@ NSString * const NVHGzipFileZlibErrorDomain = @"io.nvh.targzip.zlib.error";
             }
             if  (read == -1)
             {
-                return -1;
+                return NVHGzipFileErrorTypeDecompressionFailed;
             }
             else
             {
-                return -2;
+                return NVHGzipFileErrorTypeUnexpectedZlibState;
             }
         }
 
@@ -115,6 +137,6 @@ NSString * const NVHGzipFileZlibErrorDomain = @"io.nvh.targzip.zlib.error";
 	gzclose(source);
 	free(buffer);
     CFWriteStreamClose(writeStream);
-	return 0;
+	return NVHGzipFileErrorTypeNone;
 }
 @end
