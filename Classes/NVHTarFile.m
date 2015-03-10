@@ -343,12 +343,12 @@
 
 - (BOOL)packFilesAndDirectoriesAtPath:(NSString *)path error:(NSError **)error
 {
-    //    [self setupProgressForFileSize];
+    [self setupProgress];
     return [self innerPackFilesAndDirectoriesAtPath:path error:error];
 }
 
 - (void)packFilesAndDirectoriesAtPath:(NSString *)sourcePath completion:(void (^)(NSError *))completion {
-//    [self setupProgressForFileSize];
+    [self setupProgress];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         NSError* error = nil;
         [self innerPackFilesAndDirectoriesAtPath:sourcePath error:&error];
@@ -382,7 +382,13 @@
 - (BOOL)packFilesAndDirectoriesAtPath:(NSString *)path withTarObject:(id)object size:(unsigned long long)size error:(NSError **)error
 {
     NSFileManager *fileManager = [NSFileManager defaultManager];
-    for (NSString *file in [fileManager enumeratorAtPath:path]) {
+    NSDirectoryEnumerator *directoryEnumerator = [fileManager enumeratorAtPath:path];
+    NSArray *directoryEnumeratorObjects = [directoryEnumerator allObjects];
+    [self updateProgressVirtualTotalUnitCount:[directoryEnumeratorObjects count]];
+    int currentVirtualTotalUnit = 0;
+    for (NSString *file in directoryEnumeratorObjects) {
+        [self updateProgressVirtualCompletedUnitCount:currentVirtualTotalUnit];
+        currentVirtualTotalUnit++;
         BOOL isDir = NO;
         [fileManager fileExistsAtPath:[path stringByAppendingPathComponent:file] isDirectory:&isDir];
         NSData *tarContent = [self binaryEncodeDataForPath:file inDirectory:path isDirectory:isDir];
@@ -392,6 +398,8 @@
     char block[TAR_BLOCK_SIZE*2];
     memset(&block, '\0', TAR_BLOCK_SIZE*2);
     [object writeData:[NSData dataWithBytes:block length:TAR_BLOCK_SIZE*2]];
+    
+    [self updateProgressVirtualCompletedUnitCountWithTotal];
     
     return YES;
 }

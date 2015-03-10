@@ -55,13 +55,10 @@
                                     <action selector="tarFile:" destination="mbN-Js-sdH" eventType="touchUpInside" id="15b-bJ-lMa"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(Before Taring, unpack any of the tar examples)" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="170" translatesAutoresizingMaskIntoConstraints="NO" id="6CR-qe-bbJ">
-                                <rect key="frame" x="130" y="164" width="170" height="36"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="170" id="8h4-Wn-KBc"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(Untar any of the examples before Taring)" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="170" translatesAutoresizingMaskIntoConstraints="NO" id="6CR-qe-bbJ">
+                                <rect key="frame" x="20" y="194" width="280" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -72,6 +69,7 @@
                             <constraint firstItem="OlO-cy-aUp" firstAttribute="leading" secondItem="JY4-hx-r9k" secondAttribute="leading" id="37X-qm-RsF"/>
                             <constraint firstItem="OlO-cy-aUp" firstAttribute="trailing" secondItem="JY4-hx-r9k" secondAttribute="trailing" id="BoA-gX-49n"/>
                             <constraint firstItem="Icm-Fv-Iud" firstAttribute="leading" secondItem="qOp-B2-JUg" secondAttribute="leading" id="I07-QX-uh5"/>
+                            <constraint firstItem="6CR-qe-bbJ" firstAttribute="top" secondItem="ZmQ-EH-2pH" secondAttribute="bottom" id="JA6-CW-OwB"/>
                             <constraint firstItem="JY4-hx-r9k" firstAttribute="leading" secondItem="5XM-pO-XbK" secondAttribute="leading" constant="20" symbolic="YES" id="Lhl-CC-c6Y"/>
                             <constraint firstItem="Icm-Fv-Iud" firstAttribute="leading" secondItem="JY4-hx-r9k" secondAttribute="leading" id="X4G-LC-Oon"/>
                             <constraint firstAttribute="trailing" secondItem="JY4-hx-r9k" secondAttribute="trailing" constant="20" symbolic="YES" id="Yhb-BY-vnd"/>
@@ -80,7 +78,7 @@
                             <constraint firstItem="ZmQ-EH-2pH" firstAttribute="leading" secondItem="qOp-B2-JUg" secondAttribute="leading" id="m9b-PC-ZLd"/>
                             <constraint firstItem="JY4-hx-r9k" firstAttribute="top" secondItem="Icm-Fv-Iud" secondAttribute="bottom" constant="120" id="tYl-m1-HRu"/>
                             <constraint firstItem="OlO-cy-aUp" firstAttribute="centerY" secondItem="5XM-pO-XbK" secondAttribute="centerY" id="udn-ak-mkZ"/>
-                            <constraint firstItem="6CR-qe-bbJ" firstAttribute="top" secondItem="ZmQ-EH-2pH" secondAttribute="top" constant="-0.5" id="wvC-Q9-0IF"/>
+                            <constraint firstItem="6CR-qe-bbJ" firstAttribute="leading" secondItem="JY4-hx-r9k" secondAttribute="leading" id="xTK-uv-mVm"/>
                         </constraints>
                     </view>
                     <connections>
