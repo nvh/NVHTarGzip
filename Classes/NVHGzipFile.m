@@ -8,6 +8,7 @@
 
 #import <zlib.h>
 #import "NVHGzipFile.h"
+#import "NSFileManager+NVHFileSize.h"
 
 NSString *const NVHGzipFileZlibErrorDomain = @"io.nvh.targzip.zlib.error";
 

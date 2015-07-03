@@ -9,13 +9,6 @@
 #import <Foundation/Foundation.h>
 
 
-@interface NSFileManager (NVHFileSize)
-
-- (unsigned long long)fileSizeOfItemAtPath:(NSString *)path;
-
-@end
-
-
 @interface NVHFile : NSObject
 
 @property (nonatomic, readonly) NSString *filePath;

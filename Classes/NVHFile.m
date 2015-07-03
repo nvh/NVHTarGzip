@@ -7,23 +7,6 @@
 //
 
 #import "NVHFile.h"
-
-
-@implementation NSFileManager (NVHFileSize)
-
-- (unsigned long long)fileSizeOfItemAtPath:(NSString *)path {
-    NSError *error = nil;
-    NSDictionary* attributes = [[NSFileManager defaultManager] attributesOfItemAtPath:path error:&error];
-    if (error != nil)
-    {
-        return 0;
-    }
-    return [attributes fileSize];
-}
-
-@end
-
-
 /** Using a small maximum total unit count instead of using self.fileSize
  * directly is recommended to let it work nicely with parent progress objects
  * because of this bug rdar://16444353 (http://openradar.appspot.com/radar?id=5775860476936192)
@@ -80,6 +63,7 @@ const int64_t NVHProgressMaxTotalUnitCount = 100;
 }
 
 @end
+#import "NSFileManager+NVHFileSize.h"
 
 
 @interface NVHFile ()
