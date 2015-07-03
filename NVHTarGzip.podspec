@@ -1,9 +1,9 @@
 Pod::Spec.new do |s|
   s.name             = "NVHTarGzip"
-  s.version          = "0.6.2"
+  s.version          = "1.0.0"
   s.summary          = "A library to handle .tgz and .tar.gz files on iOS"
   s.description      = <<-DESC
-                      Unpack tarred and gzipped files with ease. Features:
+                      Unpack and pack tarred and gzipped files with ease. Features:
                        * Low memory footprint
                        * NSProgress based progress reporting
                        * Asynchronous and synchronous and API's
