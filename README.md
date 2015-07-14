@@ -3,9 +3,9 @@
 [![Version](http://cocoapod-badges.herokuapp.com/v/NVHTarGzip/badge.png)](http://cocoadocs.org/docsets/NVHTarGzip)
 [![Platform](http://cocoapod-badges.herokuapp.com/p/NVHTarGzip/badge.png)](http://cocoadocs.org/docsets/NVHTarGzip)
 
-This is ObjC wrapper around tar and gzip that directly manipulates files and isn't implemented as a category on NSData like [GZIP](https://github.com/nicklockwood/GZIP) and [Godzippa](https://github.com/mattt/Godzippa), so the full file doesn't have to be loaded into memory.
+This is an *ObjC* library for *tarring*/*untarring* and *gzipping*/*ungzipping* that directly manipulates files. It isn't implemented as a category on `NSData` (unlike [GZIP](https://github.com/nicklockwood/GZIP) or [Godzippa](https://github.com/mattt/Godzippa)) so the full file doesn't have to be first loaded into memory.
 
-The tar implementation is based on [Light-Untar-for-iOS](https://github.com/mhausherr/Light-Untar-for-iOS), but is extended to include progress reporting through NSProgress
+The *tar* implementation is based on [Light-Untar-for-iOS](https://github.com/mhausherr/Light-Untar-for-iOS), but is extended to include progress reporting through `NSProgress`.
 
 ## Usage
 
@@ -16,7 +16,7 @@ The tar implementation is based on [Light-Untar-for-iOS](https://github.com/mhau
 ```objective-c
 [[NVHTarGzip shared] unGzipFileAtPath:sourcePath toPath:destinationPath completion:^(NSError* gzipError) {
     if (gzipError != nil) {
-        NSLog(@"Error unzipping %@",gzipError);
+        NSLog(@"Error ungzipping %@", gzipError);
     }
 }];
 ```
@@ -26,7 +26,7 @@ The tar implementation is based on [Light-Untar-for-iOS](https://github.com/mhau
 ```objective-c
 [[NVHTarGzip shared] unTarFileAtPath:sourcePath toPath:destinationPath completion:^(NSError* tarError) {
     if (tarError != nil) {
-        NSLog(@"Error untarring %@",tarError);
+        NSLog(@"Error untarring %@", tarError);
     }
 }];
 ```
@@ -36,7 +36,37 @@ The tar implementation is based on [Light-Untar-for-iOS](https://github.com/mhau
 ```objective-c
 [[NVHTarGzip shared] unTarGzipFileAtPath:sourcePath toPath:destinationPath completion:^(NSError* error) {
     if (error != nil) {
-        NSLog(@"Error extracting %@",error);
+        NSLog(@"Error extracting %@", error);
+    }
+}];
+```
+
+#### Deflate Gzip file
+
+```objective-c
+[[NVHTarGzip shared] gzipFileAtPath:sourcePath toPath:destinationPath completion:^(NSError* gzipError) {
+    if (gzipError != nil) {
+        NSLog(@"Error gzipping %@", gzipError);
+    }
+}];
+```
+
+#### Tar file
+
+```objective-c
+[[NVHTarGzip shared] tarFileAtPath:sourcePath toPath:destinationPath completion:^(NSError* tarError) {
+    if (tarError != nil) {
+        NSLog(@"Error tarring %@", tarError);
+    }
+}];
+```
+
+#### Deflate Gzip and Tar
+
+```objective-c
+[[NVHTarGzip shared] tarGzipFileAtPath:sourcePath toPath:destinationPath completion:^(NSError* error) {
+    if (error != nil) {
+        NSLog(@"Error packing %@", error);
     }
 }];
 ```
@@ -49,7 +79,7 @@ The tar implementation is based on [Light-Untar-for-iOS](https://github.com/mhau
 ```objective-c
 [[NVHTarGzip shared] unGzipFileAtPath:sourcePath toPath:destinationPath completion:^(NSError* gzipError) {
     if (gzipError != nil) {
-        NSLog(@"Error unzipping %@",gzipError);
+        NSLog(@"Error ungzipping %@", gzipError);
     }
 }];
 ```
@@ -59,7 +89,7 @@ The tar implementation is based on [Light-Untar-for-iOS](https://github.com/mhau
 ```objective-c
 [[NVHTarGzip shared] unTarFileAtPath:sourcePath toPath:destinationPath completion:^(NSError* tarError) {
     if (tarError != nil) {
-        NSLog(@"Error untarring %@",tarError);
+        NSLog(@"Error untarring %@", tarError);
     }
 }];
 ```
@@ -69,11 +99,43 @@ The tar implementation is based on [Light-Untar-for-iOS](https://github.com/mhau
 ```objective-c
 [[NVHTarGzip shared] unTarGzipFileAtPath:sourcePath toPath:destinationPath completion:^(NSError* error) {
     if (error != nil) {
-        NSLog(@"Error extracting %@",error);
+        NSLog(@"Error extracting %@", error);
     }
 }];
 ```
-This will unzip the file to a cache-directory, and consequently extract the tar archive. After untarring, the cache-file is deleted. You can customize the cachePath by setting it on the singleton object before extracting:
+
+#### Deflate Gzip file
+
+```objective-c
+[[NVHTarGzip shared] gzipFileAtPath:sourcePath toPath:destinationPath completion:^(NSError* gzipError) {
+    if (gzipError != nil) {
+        NSLog(@"Error gzipping %@", gzipError);
+    }
+}];
+```
+
+#### Tar file
+
+```objective-c
+[[NVHTarGzip shared] tarFileAtPath:sourcePath toPath:destinationPath completion:^(NSError* tarError) {
+    if (tarError != nil) {
+        NSLog(@"Error untarring %@", tarError);
+    }
+}];
+```
+
+#### Deflate Gzip and Tar
+
+```objective-c
+[[NVHTarGzip shared] tarGzipFileAtPath:sourcePath toPath:destinationPath completion:^(NSError* error) {
+    if (error != nil) {
+        NSLog(@"Error extracting %@", error);
+    }
+}];
+```
+
+##### Note
+Sequential `tar.gz` packing and unpacking will either *tar* or *ungzip* the intermediate `tar` file to a temporary-directory, and subsequently *gzip* or *untar* it. After *gzipping*/*untarring*, the temporary-file is deleted. You can customize the cachePath by setting it on the singleton object before extracting:
 
 ```objective-c
 [[NVHTarGzip shared] setCachePath:customCachePath];
@@ -98,12 +160,14 @@ Checkout a full usage example in the example project; clone the repo, and run `p
 
 ## Todo
 
-Compressing files is currently not supported. Pull requests are welcome!
+Add streaming support (`NSStream`). This would allow the usage of an intermediate file for `tar.gz` packing and unpacking, thus speeding things a bit.
+
+Pull requests are welcome!
 
 ## Installation
 
-NVHTarGzip is available through [CocoaPods](http://cocoapods.org), to install
-it simply add the following line to your Podfile:
+*NVHTarGzip* is available through [CocoaPods](http://cocoapods.org), to install
+it simply add the following line to your `Podfile`:
 
 ```ruby
 pod "NVHTarGzip"
@@ -115,4 +179,4 @@ Niels van Hoorn, nvh@nvh.io
 
 ## License
 
-NVHTarGzip is available under the MIT license. See the LICENSE file for more info.
+*NVHTarGzip* is available under the *MIT license*. See the `LICENSE` file for more info.
