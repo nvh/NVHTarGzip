@@ -71,7 +71,7 @@
                toPath:(NSString *)destinationPath
                 error:(NSError **)error {
     NVHTarFile* tarFile = [[NVHTarFile alloc] initWithPath:destinationPath];
-    return [tarFile packFilesAndDirectoriesAtPath:destinationPath error:error];
+    return [tarFile packFilesAndDirectoriesAtPath:sourcePath error:error];
 }
 
 - (BOOL)gzipFileAtPath:(NSString *)sourcePath
