@@ -1,5 +1,6 @@
 # NVHTarGzip
 
+[![Project Status: Unsupported - The project has reached a stable, usable state but the author(s) have ceased all work on it. A new maintainer may be desired.](http://www.repostatus.org/badges/latest/unsupported.svg)](http://www.repostatus.org/#unsupported)
 [![Version](http://cocoapod-badges.herokuapp.com/v/NVHTarGzip/badge.png)](http://cocoadocs.org/docsets/NVHTarGzip)
 [![Platform](http://cocoapod-badges.herokuapp.com/p/NVHTarGzip/badge.png)](http://cocoadocs.org/docsets/NVHTarGzip)
 
