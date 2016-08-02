@@ -15,7 +15,7 @@ The *tar* implementation is based on [Light-Untar-for-iOS](https://github.com/mh
 #### Inflate Gzip file
 
 ```objective-c
-[[NVHTarGzip shared] unGzipFileAtPath:sourcePath toPath:destinationPath completion:^(NSError* gzipError) {
+[[NVHTarGzip sharedInstance] unGzipFileAtPath:sourcePath toPath:destinationPath completion:^(NSError* gzipError) {
     if (gzipError != nil) {
         NSLog(@"Error ungzipping %@", gzipError);
     }
@@ -25,7 +25,7 @@ The *tar* implementation is based on [Light-Untar-for-iOS](https://github.com/mh
 #### Untar file
 
 ```objective-c
-[[NVHTarGzip shared] unTarFileAtPath:sourcePath toPath:destinationPath completion:^(NSError* tarError) {
+[[NVHTarGzip sharedInstance] unTarFileAtPath:sourcePath toPath:destinationPath completion:^(NSError* tarError) {
     if (tarError != nil) {
         NSLog(@"Error untarring %@", tarError);
     }
@@ -35,7 +35,7 @@ The *tar* implementation is based on [Light-Untar-for-iOS](https://github.com/mh
 #### Inflate Gzip and Untar
 
 ```objective-c
-[[NVHTarGzip shared] unTarGzipFileAtPath:sourcePath toPath:destinationPath completion:^(NSError* error) {
+[[NVHTarGzip sharedInstance] unTarGzipFileAtPath:sourcePath toPath:destinationPath completion:^(NSError* error) {
     if (error != nil) {
         NSLog(@"Error extracting %@", error);
     }
@@ -45,7 +45,7 @@ The *tar* implementation is based on [Light-Untar-for-iOS](https://github.com/mh
 #### Deflate Gzip file
 
 ```objective-c
-[[NVHTarGzip shared] gzipFileAtPath:sourcePath toPath:destinationPath completion:^(NSError* gzipError) {
+[[NVHTarGzip sharedInstance] gzipFileAtPath:sourcePath toPath:destinationPath completion:^(NSError* gzipError) {
     if (gzipError != nil) {
         NSLog(@"Error gzipping %@", gzipError);
     }
@@ -55,7 +55,7 @@ The *tar* implementation is based on [Light-Untar-for-iOS](https://github.com/mh
 #### Tar file
 
 ```objective-c
-[[NVHTarGzip shared] tarFileAtPath:sourcePath toPath:destinationPath completion:^(NSError* tarError) {
+[[NVHTarGzip sharedInstance] tarFileAtPath:sourcePath toPath:destinationPath completion:^(NSError* tarError) {
     if (tarError != nil) {
         NSLog(@"Error tarring %@", tarError);
     }
@@ -65,7 +65,7 @@ The *tar* implementation is based on [Light-Untar-for-iOS](https://github.com/mh
 #### Deflate Gzip and Tar
 
 ```objective-c
-[[NVHTarGzip shared] tarGzipFileAtPath:sourcePath toPath:destinationPath completion:^(NSError* error) {
+[[NVHTarGzip sharedInstance] tarGzipFileAtPath:sourcePath toPath:destinationPath completion:^(NSError* error) {
     if (error != nil) {
         NSLog(@"Error packing %@", error);
     }
@@ -78,61 +78,73 @@ The *tar* implementation is based on [Light-Untar-for-iOS](https://github.com/mh
 #### Inflate Gzip file
 
 ```objective-c
-[[NVHTarGzip shared] unGzipFileAtPath:sourcePath toPath:destinationPath completion:^(NSError* gzipError) {
-    if (gzipError != nil) {
-        NSLog(@"Error ungzipping %@", gzipError);
-    }
-}];
+NSError *error;
+BOOL success = [[NVHTarGzip sharedInstance] unGzipFileAtPath:sourcePath toPath:destinationPath error:&error];
+if (success) {
+    //continue
+} else {
+    if (error) NSLog(@"Error ungzipping: %@", [error localizedDescription]);
+}
 ```
 
 #### Untar file
 
 ```objective-c
-[[NVHTarGzip shared] unTarFileAtPath:sourcePath toPath:destinationPath completion:^(NSError* tarError) {
-    if (tarError != nil) {
-        NSLog(@"Error untarring %@", tarError);
-    }
-}];
+NSError *error;
+BOOL success = [[NVHTarGzip sharedInstance] unTarFileAtPath:sourcePath toPath:destinationPath error:&error];
+if (success) {
+    //continue
+} else {
+    if (error) NSLog(@"Error untarring: %@", [error localizedDescription]);
+}
 ```
 
 #### Inflate Gzip and Untar
 
 ```objective-c
-[[NVHTarGzip shared] unTarGzipFileAtPath:sourcePath toPath:destinationPath completion:^(NSError* error) {
-    if (error != nil) {
-        NSLog(@"Error extracting %@", error);
-    }
-}];
+NSError *error;
+BOOL success = [[NVHTarGzip sharedInstance] unTarGzipFileAtPath:sourcePath toPath:destinationPath error:&error];
+if (success) {
+    //continue
+} else {
+    if (error) NSLog(@"Error extracting: %@", [error localizedDescription]);
+}
 ```
 
 #### Deflate Gzip file
 
 ```objective-c
-[[NVHTarGzip shared] gzipFileAtPath:sourcePath toPath:destinationPath completion:^(NSError* gzipError) {
-    if (gzipError != nil) {
-        NSLog(@"Error gzipping %@", gzipError);
-    }
-}];
+NSError *error;
+BOOL success = [[NVHTarGzip sharedInstance] gzipFileAtPath:sourcePath toPath:destinationPath error:&error];
+if (success) {
+    //continue
+} else {
+    if (error) NSLog(@"Error gzipping: %@", [error localizedDescription]);
+}
 ```
 
 #### Tar file
 
 ```objective-c
-[[NVHTarGzip shared] tarFileAtPath:sourcePath toPath:destinationPath completion:^(NSError* tarError) {
-    if (tarError != nil) {
-        NSLog(@"Error untarring %@", tarError);
-    }
-}];
+NSError *error;
+BOOL success = [[NVHTarGzip sharedInstance] tarFileAtPath:sourcePath toPath:destinationPath error:&error];
+if (success) {
+    //continue
+} else {
+    if (error) NSLog(@"Error tarring: %@", [error localizedDescription]);
+}
 ```
 
 #### Deflate Gzip and Tar
 
 ```objective-c
-[[NVHTarGzip shared] tarGzipFileAtPath:sourcePath toPath:destinationPath completion:^(NSError* error) {
-    if (error != nil) {
-        NSLog(@"Error extracting %@", error);
-    }
-}];
+NSError *error;
+BOOL success = [[NVHTarGzip sharedInstance] tarGzipFileAtPath:sourcePath toPath:destinationPath error:&error];
+if (success) {
+    //continue
+} else {
+    if (error) NSLog(@"Error extracting: %@", [error localizedDescription]);
+}
 ```
 
 ##### Note
