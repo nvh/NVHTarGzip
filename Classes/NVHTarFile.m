@@ -481,8 +481,6 @@ static const char template_header[] = {
     NSString *groupName = [attributes objectForKey:NSFileGroupOwnerAccountName];
     unsigned long long fileSize = [[attributes objectForKey:NSFileSize] longLongValue];
     
-    char nameChar[USTAR_name_size];
-    [self writeString:path toChar:nameChar withLength:USTAR_name_size];
     char unameChar[USTAR_uname_size];
     [self writeString:ownerName toChar:unameChar withLength:USTAR_uname_size];
     char gnameChar[USTAR_gname_size];
@@ -500,10 +498,14 @@ static const char template_header[] = {
     format_number([modificationDate timeIntervalSince1970],
                   buffer + USTAR_mtime_offset, USTAR_mtime_size, USTAR_mtime_max_size, 0);
     
-    unsigned long nameLength = strlen(nameChar);
-    if (nameLength <= USTAR_name_size)
+    unsigned long nameLength = path.length;
+    char* nameChar = (char*)malloc(nameLength+1);
+    if (nameLength <= USTAR_name_size){
+        [self writeString:path toChar:nameChar withLength:nameLength+1];
         memcpy(buffer + USTAR_name_offset, nameChar, nameLength);
+    }
     else {
+        [self writeString:path toChar:nameChar withLength:nameLength+1];
         /* Store in two pieces, splitting at a '/'. */
         const char *p = strchr(nameChar + nameLength - USTAR_name_size - 1, '/');
         /*
@@ -513,11 +515,11 @@ static const char template_header[] = {
          */
         if (p == nameChar)
             p = strchr(p + 1, '/');
-        memcpy(buffer + USTAR_prefix_offset, nameChar, p - nameChar);
+        memcpy(buffer + USTAR_prefix_offset, nameChar, (p - nameChar) > USTAR_prefix_size ? USTAR_prefix_size:(p - nameChar)); //handle ridiculously long name
         memcpy(buffer + USTAR_name_offset, p + 1,
                nameChar + nameLength - p - 1);
     }
-    
+    free(nameChar);
     memcpy(buffer+USTAR_uname_offset,unameChar,USTAR_uname_size);
     memcpy(buffer+USTAR_gname_offset,gnameChar,USTAR_gname_size);
     
