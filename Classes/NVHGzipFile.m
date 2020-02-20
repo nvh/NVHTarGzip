@@ -26,7 +26,7 @@ typedef NS_ENUM(NSInteger, NVHGzipFileErrorType)
 
 @interface NVHGzipFile ()
 
-@property (nonatomic,assign) CGFloat fileSizeFraction;
+@property (nonatomic,assign) double fileSizeFraction;
 
 @end
 
@@ -103,7 +103,7 @@ typedef NS_ENUM(NSInteger, NVHGzipFileErrorType)
 	// Convert source path into something a C library can handle
 	const char *sourceCString = [sourcePath cStringUsingEncoding:NSASCIIStringEncoding];
     
-	gzFile *sourceGzFile = gzopen(sourceCString, "rb");
+	gzFile sourceGzFile = gzopen(sourceCString, "rb");
     
 	unsigned int bufferLength = 1024*256;	//Thats like 256Kb
 	void *buffer = malloc(bufferLength);
@@ -221,7 +221,7 @@ typedef NS_ENUM(NSInteger, NVHGzipFileErrorType)
     // Convert destination path into something a C library can handle
     const char *destinationCString = [destinationPath cStringUsingEncoding:NSASCIIStringEncoding];
     
-    gzFile *destinationGzFile = gzopen(destinationCString, "wb");
+    gzFile destinationGzFile = gzopen(destinationCString, "wb");
     
     unsigned int bufferLength = 1024*256;	//Thats like 256Kb
     void *buffer = malloc(bufferLength);
