@@ -32,7 +32,7 @@
 
 // Logging mode
 // Comment this line for production
-//#define TAR_VERBOSE_LOG_MODE
+// #define TAR_VERBOSE_LOG_MODE
 
 // const definition
 #define TAR_BLOCK_SIZE                  512
@@ -243,6 +243,20 @@
                 break;
             }
                 
+            // This fixes the following issue for tar files genetrated on the mac...
+            // https://github.com/nvh/NVHTarGzip/issues/8
+            case ' ': // .DS_Store filea manifest with an empty string as their type.
+            {
+#ifdef TAR_VERBOSE_LOG_MODE
+                NSLog(@"UNTAR - unsupported block");
+#endif
+                @autoreleasepool {
+                    unsigned long long objectSize = [NVHTarFile sizeForObject:object atOffset:location];
+                    blockCount += ceil(objectSize / TAR_BLOCK_SIZE);
+                }
+                break;
+            }
+
             default: // It's not a tar type
             {
                 NSDictionary *userInfo = [NSDictionary dictionaryWithObject:@"Invalid block type found"
