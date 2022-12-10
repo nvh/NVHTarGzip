@@ -26,7 +26,7 @@ typedef NS_ENUM(NSInteger, NVHGzipFileErrorType)
 
 @interface NVHGzipFile ()
 
-@property (nonatomic,assign) CGFloat fileSizeFraction;
+@property (nonatomic,assign) double fileSizeFraction;
 
 @end
 
